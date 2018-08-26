@@ -19,11 +19,11 @@ public class Hero : MonoBehaviour, IDamageable
     /// <summary>
     /// Maximum range of the hero's basic attack
     /// </summary>
-    public int range;
+    public float range;
     /// <summary>
     /// Maximum distance the hero may cover on a movement
     /// </summary>
-    public int speed;
+    public float speed;
     /// <summary>
     /// Amount of health the hero currently has
     /// </summary>

@@ -34,4 +34,16 @@ public class GameManager : MonoBehaviour
             m_ap = value;
         }
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+
+    private void Start()
+    {
+        deck.Shuffle();
+
+        deck.Invoke("Draw", 1f);
+        deck.Invoke("Draw", 2f);
+        deck.Invoke("Draw", 3f);
+        deck.Invoke("Draw", 4f);
+    }
 }
