@@ -6,15 +6,15 @@ using UnityEngine;
 public class Deck : MonoBehaviour
 {
     /// <summary>
-    /// The reserve/draw pile of the player
+    /// Reserve/draw pile of the player
     /// </summary>
     public List<Card> reserve;
     /// <summary>
-    /// The discard pile of the player
+    /// Discard pile of the player
     /// </summary>
     public List<Card> discard;
     /// <summary>
-    /// The current hand of the player
+    /// Current hand of the player
     /// </summary>
     public List<Card> hand;
 

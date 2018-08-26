@@ -9,23 +9,23 @@ public class Hero : MonoBehaviour, IDamageable
     ///////////////////////////////////////////////////////////////////////////////
 
     /// <summary>
-    /// The maximum amount of health point that the hero may have
+    /// Maximum amount of health points that the hero can have
     /// </summary>
     public int maxHP;
     /// <summary>
-    /// The amount of damage the hero will give on its basic attack
+    /// Amount of damage the hero will give on its basic attack
     /// </summary>
     public int damage;
     /// <summary>
-    /// The maximum range of the hero's basic attack
+    /// Maximum range of the hero's basic attack
     /// </summary>
     public int range;
     /// <summary>
-    /// The maximum distance the hero may cover on a movement
+    /// Maximum distance the hero may cover on a movement
     /// </summary>
     public int speed;
     /// <summary>
-    /// The amount of health the hero currently has
+    /// Amount of health the hero currently has
     /// </summary>
     public int hp
     {
@@ -49,7 +49,7 @@ public class Hero : MonoBehaviour, IDamageable
     /// <summary>
     /// Attacks the targeted IDamageable
     /// </summary>
-    /// <param name="target">The target of the attack</param>
+    /// <param name="target">Target of the attack</param>
     public void Attack(IDamageable target)
     {
         target.TakeDamage(damage);
@@ -58,7 +58,7 @@ public class Hero : MonoBehaviour, IDamageable
     /// <summary>
     /// Damages the hero
     /// </summary>
-    /// <param name="damage">The amount of damage taken</param>
+    /// <param name="damage">Amount of damage taken</param>
     /// <returns>True if the hero is killed, False if the hero survived</returns>
     public bool TakeDamage(int damage)
     {
