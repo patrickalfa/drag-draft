@@ -35,6 +35,20 @@ public class Deck : MonoBehaviour
     }
 
     /// <summary>
+    /// Discard a card from the hand of the player, moving it to the discard pile 
+    /// </summary>
+    /// <param name="card">Card to be discarded</param>
+    public void Discard(Card card)
+    {
+        hand.Remove(card);
+        discard.Add(card);
+        RearrangeHand();
+
+        card.transform.DOComplete();
+        card.transform.DOMove(Vector3.up * -10f, .5f);
+    }
+
+    /// <summary>
     /// Shuffles the reserve/draw pile of the player
     /// </summary>
     public void Shuffle()
@@ -42,6 +56,9 @@ public class Deck : MonoBehaviour
         reserve = reserve.OrderBy(x => Random.value).ToList();
     }
 
+    /// <summary>
+    /// Rearranges the of the player with the cards on the 'hand' list
+    /// </summary>
     public void RearrangeHand()
     {
         int count = hand.Count;

@@ -5,64 +5,69 @@ using UnityEngine;
 
 public class LineManager : MonoBehaviour
 {
-    // Inspector fields
-    public Sprite Dot;
+    public Sprite dot;
     [Range(0.01f, 1f)]
-    public float Size;
+    public float size;
     [Range(0.1f, 2f)]
-    public float Delta;
-
+    public float delta;
     public Color color;
     public int sortingOrder;
     public bool outline;
     public float outlineWidth;
     public Color outlineColor;
 
-    //Static Property with backing field
-    private static LineManager instance;
-    public static LineManager Instance
+    private static LineManager m_instance;
+    public static LineManager instance
     {
         get
         {
-            if (instance == null)
-                instance = FindObjectOfType<LineManager>();
-            return instance;
+            if (m_instance == null)
+                m_instance = FindObjectOfType<LineManager>();
+            return m_instance;
         }
     }
 
-    //Utility fields
-    List<Vector2> positions = new List<Vector2>();
-    List<GameObject> dots = new List<GameObject>();
+    private Transform _transform;
+    private List<Vector2> _positions = new List<Vector2>();
+    private List<GameObject> _dots = new List<GameObject>();
 
-    // Update is called once per frame
+    ///////////////////////////////////////////////////////////////////////////////
+
+    private void Start()
+    {
+        _transform = transform;
+    }
+
     private void FixedUpdate()
     {
-        if (positions.Count > 0)
+        if (_positions.Count > 0)
         {
             DestroyAllDots();
-            positions.Clear();
+            _positions.Clear();
         }
 
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
 
     private void DestroyAllDots()
     {
-        foreach (GameObject dot in dots)
+        foreach (GameObject dot in _dots)
         {
             Destroy(dot);
         }
-        dots.Clear();
+        _dots.Clear();
     }
 
     private GameObject GetOneDot()
     {
         GameObject gameObject = new GameObject();
-        gameObject.transform.localScale = Vector3.one * Size;
+        gameObject.transform.localScale = Vector3.one * size;
         gameObject.transform.parent = transform;
 
         SpriteRenderer sr = gameObject.AddComponent<SpriteRenderer>();
         sr.sortingOrder = sortingOrder;
-        sr.sprite = Dot;
+        sr.sprite = dot;
         sr.color = color;
 
         if (outline)
@@ -74,12 +79,12 @@ public class LineManager : MonoBehaviour
     private void CreateDotOutline(GameObject dot)
     {
         GameObject gameObject = new GameObject();
-        gameObject.transform.localScale = Vector3.one * (Size + outlineWidth);
+        gameObject.transform.localScale = Vector3.one * (size + outlineWidth);
         gameObject.transform.parent = dot.transform;
 
         SpriteRenderer ol = gameObject.AddComponent<SpriteRenderer>();
         ol.sortingOrder = sortingOrder - 1;
-        ol.sprite = Dot;
+        ol.sprite = this.dot;
         ol.color = outlineColor;
     }
 
@@ -92,8 +97,8 @@ public class LineManager : MonoBehaviour
 
         while ((end - start).magnitude > (point - start).magnitude)
         {
-            positions.Add(point);
-            point += (direction * Delta);
+            _positions.Add(point);
+            point += (direction * delta);
         }
 
         Render();
@@ -101,11 +106,11 @@ public class LineManager : MonoBehaviour
 
     private void Render()
     {
-        foreach (Vector2 position in positions)
+        foreach (Vector2 position in _positions)
         {
             GameObject g = GetOneDot();
             g.transform.position = position;
-            dots.Add(g);
+            _dots.Add(g);
         }
     }
 }

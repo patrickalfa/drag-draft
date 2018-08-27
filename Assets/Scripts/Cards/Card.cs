@@ -36,12 +36,17 @@ public class Card : MonoBehaviour
     ///////////////////////////////////////////////////////////////////////////////
 
     // TODO
-    public void Set()
+    public void Action()
     {
     }
 
     // TODO
-    public void Action()
+    public void Action(Vector2 target)
+    {
+    }
+
+    // TODO
+    public void Action(GameObject target)
     {
     }
 }

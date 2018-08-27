@@ -35,15 +35,33 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private static GameManager m_instance;
+    public static GameManager instance
+    {
+        get
+        {
+            if (m_instance == null)
+                m_instance = FindObjectOfType<GameManager>();
+            return m_instance;
+        }
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
 
     private void Start()
     {
+        // DEBUG
         deck.Shuffle();
-
+        deck.Invoke("Draw", .5f);
         deck.Invoke("Draw", 1f);
+        deck.Invoke("Draw", 1.5f);
         deck.Invoke("Draw", 2f);
-        deck.Invoke("Draw", 3f);
-        deck.Invoke("Draw", 4f);
+    }
+
+    private void Update()
+    {
+        // DEBUG
+        if (Input.GetKeyDown(KeyCode.Space))
+            deck.Draw();
     }
 }

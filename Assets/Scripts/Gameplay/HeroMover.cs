@@ -44,10 +44,10 @@ public class HeroMover : Draggable
         else if (distance > (_hero.speed - 2f))
             newColor = Color.Lerp(Color.white, Color.yellow, distance - (_hero.speed - 2f));
 
-        LineManager.Instance.Size = .1f;
-        LineManager.Instance.Delta = .25f;
-        LineManager.Instance.color = newColor;
-        LineManager.Instance.sortingOrder = 8;
-        LineManager.Instance.DrawDottedLine(_startPosition, _transform.position);
+        LineManager.instance.size = .1f;
+        LineManager.instance.delta = .25f;
+        LineManager.instance.color = newColor;
+        LineManager.instance.sortingOrder = 8;
+        LineManager.instance.DrawDottedLine(_startPosition, _transform.position);
     }
 }

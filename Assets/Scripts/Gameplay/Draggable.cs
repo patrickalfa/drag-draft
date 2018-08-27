@@ -21,6 +21,8 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     protected bool dragging = false;
 
+    ///////////////////////////////////////////////////////////////////////////////
+
     #region Interface Implementations
 
     public virtual void OnBeginDrag(PointerEventData eventData)
@@ -74,6 +76,8 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     #endregion
 
+    ///////////////////////////////////////////////////////////////////////////////
+
     protected virtual void Start()
     {
         _transform = transform;
@@ -85,6 +89,8 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     protected virtual void Update()
     {
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
 
     protected virtual void DragTo(Vector3 newPos)
     {
