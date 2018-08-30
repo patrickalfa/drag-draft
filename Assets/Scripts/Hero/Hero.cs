@@ -41,9 +41,15 @@ public class Hero : MonoBehaviour, IDamageable
 
     ///////////////////////////////////////////////////////////////////////////////
 
-    // TODO
-    public void Move()
+    private Transform _transform;
+    private SpriteRenderer _sprite;
+
+    ///////////////////////////////////////////////////////////////////////////////
+
+    private void Start()
     {
+        _transform = transform;
+        _sprite = _transform.Find("Sprite").GetComponent<SpriteRenderer>();
     }
 
     /// <summary>
@@ -64,5 +70,19 @@ public class Hero : MonoBehaviour, IDamageable
     {
         hp = Mathf.Clamp(hp - damage, 0, maxHP);
         return hp == 0;
+    }
+
+    public void Lock()
+    {
+        Color c = _sprite.color;
+        c.a = .5f;
+        _sprite.color = c;
+    }
+
+    public void Unlock()
+    {
+        Color c = _sprite.color;
+        c.a = 1f;
+        _sprite.color = c;
     }
 }

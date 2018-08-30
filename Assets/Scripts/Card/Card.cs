@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-    private bool m_revealed;
-    private SpriteRenderer _renderer;
+    protected bool m_revealed;
+    protected SpriteRenderer _renderer;
 
     ///////////////////////////////////////////////////////////////////////////////
 
@@ -35,18 +35,18 @@ public class Card : MonoBehaviour
 
     ///////////////////////////////////////////////////////////////////////////////
 
-    // TODO
-    public void Action()
+    public virtual void Action()
     {
+        GameManager.instance.currentState = GAME_STATE.ACTING;
     }
 
-    // TODO
-    public void Action(Vector2 target)
+    public virtual void Action(Vector2 target)
     {
+        GameManager.instance.currentState = GAME_STATE.ACTING;
     }
 
-    // TODO
-    public void Action(GameObject target)
+    public virtual void Action(GameObject target)
     {
+        GameManager.instance.currentState = GAME_STATE.ACTING;
     }
 }

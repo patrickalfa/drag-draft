@@ -22,12 +22,24 @@ public class Deck : MonoBehaviour
     ///////////////////////////////////////////////////////////////////////////////
 
     /// <summary>
+    /// Y-Position of the player's hand
+    /// </summary>
+    private float _yPos = -4f;
+    private float _timeToDraw = .5f;
+
+    ///////////////////////////////////////////////////////////////////////////////
+
+    /// <summary>
     /// Draws a card from the reserve pile to the hand of the player
     /// </summary>
     public void Draw()
     {
         if (reserve.Count > 0)
         {
+            GameManager.instance.currentState = GAME_STATE.DRAWING;
+            StopCoroutine("WaitForDrawToComplete");
+            StartCoroutine("WaitForDrawToComplete");
+
             hand.Add(reserve[0]);
             reserve.RemoveAt(0);
             RearrangeHand();
@@ -44,7 +56,7 @@ public class Deck : MonoBehaviour
         discard.Add(card);
         RearrangeHand();
 
-        card.transform.DOComplete();
+        card.transform.DOKill();
         card.transform.DOMove(Vector3.up * -10f, .5f);
     }
 
@@ -68,10 +80,48 @@ public class Deck : MonoBehaviour
 
         for (int i = 0; i < count; i++)
         {
-            Vector3 newPos = Vector3.up * -4f;
+            Vector3 newPos = Vector3.up * _yPos;
             newPos.x = -(dist * count * .5f) + ((i + .5f) * dist);
             hand[i].DOComplete();
             hand[i].transform.DOMove(newPos, .5f);
         }
+    }
+
+    /// <summary>
+    /// Lock the cards in the player's hand to prevent they from playing them
+    /// </summary>
+    /// <param name="retreat">Whether the card will retreat or not</param>
+    public void LockHand(bool retreat)
+    {
+        foreach (Card c in hand)
+        {
+            c.GetComponent<Collider2D>().enabled = false;
+        }
+
+        if (retreat)
+        {
+            _yPos = -5f;
+            RearrangeHand();
+        }
+    }
+
+    /// <summary>
+    /// Unlock the cards in the player's hand to allow they from playing them
+    /// </summary>
+    public void UnlockHand()
+    {
+        foreach (Card c in hand)
+        {
+            _yPos = -4f;
+            c.GetComponent<Collider2D>().enabled = true;
+        }
+
+        RearrangeHand();
+    }
+
+    private IEnumerator WaitForDrawToComplete()
+    {
+        yield return new WaitForSeconds(_timeToDraw);
+        GameManager.instance.currentState = GAME_STATE.PLANNING;
     }
 }

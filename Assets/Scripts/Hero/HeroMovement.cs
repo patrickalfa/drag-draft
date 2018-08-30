@@ -2,7 +2,7 @@
 using UnityEngine.EventSystems;
 using DG.Tweening;
 
-public class HeroMover : Draggable
+public class HeroMovement : Draggable
 {
     private Hero _hero;
 
@@ -10,15 +10,31 @@ public class HeroMover : Draggable
     {
         base.Start();
 
+        raisedSortingOrder = 9;
         _hero = GetComponent<Hero>();
+        _startPosition = _transform.position;
+
+        GameManager.instance.SpotlightHero(_hero, true);
     }
 
     protected override void Update()
     {
         base.Update();
 
+        HighlightHero();
+
         if (dragging)
-            UpdateLine();
+            DrawLine();
+    }
+
+    public override void OnEndDrag(PointerEventData eventData)
+    {
+        base.OnEndDrag(eventData);
+
+        GameManager.instance.SpotlightHero(_hero, false);
+        GameManager.instance.currentState = GAME_STATE.PLANNING;
+
+        Destroy(this);
     }
 
     protected override void DragTo(Vector3 newPos)
@@ -34,7 +50,7 @@ public class HeroMover : Draggable
         }
     }
 
-    private void UpdateLine()
+    private void DrawLine()
     {
         float distance = Vector3.Distance(_startPosition, _transform.position);
 
@@ -49,5 +65,13 @@ public class HeroMover : Draggable
         LineManager.instance.color = newColor;
         LineManager.instance.sortingOrder = 8;
         LineManager.instance.DrawDottedLine(_startPosition, _transform.position);
+    }
+
+    private void HighlightHero()
+    {
+        TargetManager.instance.size = 1.25f;
+        TargetManager.instance.color = new Color(.55f, 1f, .9f, .75f);
+        TargetManager.instance.sortingOrder = -1;
+        TargetManager.instance.DrawMarker(_startPosition);
     }
 }

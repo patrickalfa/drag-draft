@@ -27,16 +27,10 @@ public class LineManager : MonoBehaviour
         }
     }
 
-    private Transform _transform;
     private List<Vector2> _positions = new List<Vector2>();
     private List<GameObject> _dots = new List<GameObject>();
 
     ///////////////////////////////////////////////////////////////////////////////
-
-    private void Start()
-    {
-        _transform = transform;
-    }
 
     private void FixedUpdate()
     {

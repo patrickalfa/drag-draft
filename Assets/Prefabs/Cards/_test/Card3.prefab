@@ -78,7 +78,7 @@ BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1610027889408962}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -109,6 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   raisedSortingOrder: 19
+  targetType: 0
 --- !u!114 &114669605329036822
 MonoBehaviour:
   m_ObjectHideFlags: 1

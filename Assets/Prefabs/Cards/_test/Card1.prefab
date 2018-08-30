@@ -78,7 +78,7 @@ BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1766083365129074}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -109,6 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   raisedSortingOrder: 19
+  targetType: 0
 --- !u!114 &114536417081787254
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -117,7 +118,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1766083365129074}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d597cd9d33be47a4687f23032b07c1a3, type: 3}
+  m_Script: {fileID: 11500000, guid: afb56cbe859cf92479eefaaed789aa6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0
@@ -159,7 +160,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 12
   m_Sprite: {fileID: 21300000, guid: 1f1d41efd7352bf49874f85b17883fe9, type: 3}
-  m_Color: {r: 0.5707547, g: 1, b: 0.88643855, a: 1}
+  m_Color: {r: 0.55, g: 1, b: 0.9, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
