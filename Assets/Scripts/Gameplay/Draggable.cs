@@ -82,12 +82,18 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     {
         _transform = transform;
         _sprite = _transform.Find("Sprite");
+        _startPosition = _transform.position;
         _sortingOrder = _sprite.GetComponent<SpriteRenderer>().sortingOrder;
         CreateShadow();
     }
 
     protected virtual void Update()
     {
+    }
+
+    protected virtual void OnDestroy()
+    {
+        Destroy(_shadow);
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -102,6 +108,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         _shadow = Instantiate(_sprite.gameObject, _sprite.position, Quaternion.identity, _transform);
         _shadow.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, .5f);
         _shadow.GetComponent<SpriteRenderer>().sortingOrder = _sortingOrder - 1;
+        _shadow.name = "Shadow";
     }
 
     protected virtual void ResetPosition()

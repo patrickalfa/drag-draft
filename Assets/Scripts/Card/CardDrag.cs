@@ -2,14 +2,6 @@
 using UnityEngine.EventSystems;
 using DG.Tweening;
 
-public enum TARGET_TYPE
-{
-    HERO,
-    ENEMY,
-    BOARD,
-    NONE
-}
-
 public class CardDrag : Draggable
 {
     [Tooltip("Type of the targeting method of the card")]
@@ -55,8 +47,6 @@ public class CardDrag : Draggable
     protected override void Update()
     {
         base.Update();
-
-        print(_targetObj);
 
         if (dragging)
         {

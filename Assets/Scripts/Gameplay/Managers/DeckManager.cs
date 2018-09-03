@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using DG.Tweening;
 
-public class Deck : MonoBehaviour
+public class DeckManager : MonoBehaviour
 {
     /// <summary>
     /// Reserve/draw pile of the player
@@ -34,7 +34,7 @@ public class Deck : MonoBehaviour
     /// </summary>
     public void Draw()
     {
-        if (reserve.Count > 0)
+        if (reserve.Count > 0 && hand.Count < 5)
         {
             GameManager.instance.currentState = GAME_STATE.DRAWING;
             StopCoroutine("WaitForDrawToComplete");
@@ -94,9 +94,7 @@ public class Deck : MonoBehaviour
     public void LockHand(bool retreat)
     {
         foreach (Card c in hand)
-        {
             c.GetComponent<Collider2D>().enabled = false;
-        }
 
         if (retreat)
         {
@@ -111,11 +109,9 @@ public class Deck : MonoBehaviour
     public void UnlockHand()
     {
         foreach (Card c in hand)
-        {
-            _yPos = -4f;
             c.GetComponent<Collider2D>().enabled = true;
-        }
 
+        _yPos = -4f;
         RearrangeHand();
     }
 

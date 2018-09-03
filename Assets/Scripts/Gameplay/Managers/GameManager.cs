@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Player's deck
     /// </summary>
-    public Deck deck;
+    public DeckManager deck;
     /// <summary>
     /// Player's heroes
     /// </summary>
@@ -76,10 +76,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        // DEBUG
-        if (Input.GetKeyDown(KeyCode.Space))
-            deck.Draw();
-
         OnStateUpdate();
         if (_lateState != currentState)
             OnStateChange();

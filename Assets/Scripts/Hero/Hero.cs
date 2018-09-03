@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Hero : MonoBehaviour, IDamageable
 {
@@ -50,15 +51,8 @@ public class Hero : MonoBehaviour, IDamageable
     {
         _transform = transform;
         _sprite = _transform.Find("Sprite").GetComponent<SpriteRenderer>();
-    }
 
-    /// <summary>
-    /// Attacks the targeted IDamageable
-    /// </summary>
-    /// <param name="target">Target of the attack</param>
-    public void Attack(IDamageable target)
-    {
-        target.TakeDamage(damage);
+        hp = maxHP;
     }
 
     /// <summary>
@@ -69,6 +63,16 @@ public class Hero : MonoBehaviour, IDamageable
     public bool TakeDamage(int damage)
     {
         hp = Mathf.Clamp(hp - damage, 0, maxHP);
+
+        _sprite.transform.DOShakePosition(.25f, .1f, 25).OnComplete(() =>
+        {
+            if (hp == 0)
+            {
+                _sprite.transform.DOScale(0f, .25f);
+                Invoke("DestroySelf", .25f);
+            }
+        });
+
         return hp == 0;
     }
 
@@ -84,5 +88,11 @@ public class Hero : MonoBehaviour, IDamageable
         Color c = _sprite.color;
         c.a = 1f;
         _sprite.color = c;
+    }
+
+    private void DestroySelf()
+    {
+        gameObject.SetActive(false);
+        //Destroy(gameObject);
     }
 }

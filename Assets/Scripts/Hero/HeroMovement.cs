@@ -10,9 +10,8 @@ public class HeroMovement : Draggable
     {
         base.Start();
 
-        raisedSortingOrder = 9;
         _hero = GetComponent<Hero>();
-        _startPosition = _transform.position;
+        raisedSortingOrder = 9;
 
         GameManager.instance.SpotlightHero(_hero, true);
     }
@@ -21,10 +20,11 @@ public class HeroMovement : Draggable
     {
         base.Update();
 
-        HighlightHero();
 
         if (dragging)
             DrawLine();
+        else
+            HighlightHero();
     }
 
     public override void OnEndDrag(PointerEventData eventData)
