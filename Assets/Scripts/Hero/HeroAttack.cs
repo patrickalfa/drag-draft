@@ -15,7 +15,7 @@ public class HeroAttack : Targetable
         raisedSortingOrder = 9;
         targetType = TARGET_TYPE.HERO; //DEBUG
         range = _hero.range;
-        lineColor = Color.red;
+        lineColor = new Color(.25f, .55f, 1f, 1f);
 
         GameManager.instance.SpotlightHero(_hero, true);
     }

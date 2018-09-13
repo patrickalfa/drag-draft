@@ -5,6 +5,7 @@ using DG.Tweening;
 public class HeroMovement : Draggable
 {
     private Hero _hero;
+    private bool isValid;
 
     protected override void Start()
     {
@@ -22,7 +23,10 @@ public class HeroMovement : Draggable
 
 
         if (dragging)
+        {
             DrawLine();
+            CheckValidMovement();
+        }
         else
             HighlightHero();
     }
@@ -31,10 +35,14 @@ public class HeroMovement : Draggable
     {
         base.OnEndDrag(eventData);
 
-        GameManager.instance.SpotlightHero(_hero, false);
-        GameManager.instance.currentState = GAME_STATE.PLANNING;
-
-        Destroy(this);
+        if (isValid)
+        {
+            GameManager.instance.SpotlightHero(_hero, false);
+            GameManager.instance.currentState = GAME_STATE.PLANNING;
+            Destroy(this);
+        }
+        else
+            ResetPosition();  
     }
 
     protected override void DragTo(Vector3 newPos)
@@ -54,15 +62,10 @@ public class HeroMovement : Draggable
     {
         float distance = Vector3.Distance(_startPosition, _transform.position);
 
-        Color newColor = Color.white;
-        if (distance > (_hero.speed - 1f))
-            newColor = Color.Lerp(Color.yellow, Color.red, distance - (_hero.speed - 1f));
-        else if (distance > (_hero.speed - 2f))
-            newColor = Color.Lerp(Color.white, Color.yellow, distance - (_hero.speed - 2f));
 
-        LineManager.instance.size = .1f;
+        LineManager.instance.size = .15f;
         LineManager.instance.delta = .25f;
-        LineManager.instance.color = newColor;
+        LineManager.instance.color = new Color(.55f, 1f, .9f, 1f);
         LineManager.instance.sortingOrder = 8;
         LineManager.instance.DrawDottedLine(_startPosition, _transform.position);
     }
@@ -73,5 +76,29 @@ public class HeroMovement : Draggable
         TargetManager.instance.color = new Color(.55f, 1f, .9f, .75f);
         TargetManager.instance.sortingOrder = -1;
         TargetManager.instance.DrawMarker(_startPosition);
+    }
+
+    private void CheckValidMovement()
+    {
+        isValid = true;
+        Collider2D[] cols = Physics2D.OverlapCircleAll(_transform.position, .5f, LayerMask.GetMask("Hero", "Enemy"));
+
+        foreach (Collider2D col in cols)
+        {
+            if (col && (col.gameObject != gameObject))
+            {
+                isValid = false;
+            }
+        }
+
+        //------------------------------------------------------------
+
+        Color c = _sprite.GetComponent<SpriteRenderer>().color;
+        if (isValid)
+            c.a = 1f;
+        else
+            c.a = .5f;
+        _sprite.GetComponent<SpriteRenderer>().color = c;
+        _shadow.SetActive(isValid);
     }
 }

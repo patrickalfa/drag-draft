@@ -173,7 +173,7 @@ public class Targetable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     protected virtual void DrawLine()
     {
-        LineManager.instance.size = .1f;
+        LineManager.instance.size = .15f;
         LineManager.instance.delta = .25f;
         LineManager.instance.color = lineColor;
         LineManager.instance.sortingOrder = raisedSortingOrder;
