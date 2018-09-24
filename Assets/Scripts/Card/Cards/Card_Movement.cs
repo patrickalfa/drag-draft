@@ -12,6 +12,6 @@ public class Card_Movement : Card
     public override void Action(GameObject target)
     {
         base.Action(target);
-        target.AddComponent<HeroMovement>();
+        target.GetComponent<HeroMovement>().enabled = true;
     }
 }

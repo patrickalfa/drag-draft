@@ -39,7 +39,7 @@ public class HeroMovement : Draggable
         {
             GameManager.instance.SpotlightHero(_hero, false);
             GameManager.instance.currentState = GAME_STATE.PLANNING;
-            Destroy(this);
+            enabled = false;
         }
         else
             ResetPosition();  
@@ -58,11 +58,17 @@ public class HeroMovement : Draggable
         }
     }
 
+    protected override void ResetPosition()
+    {
+        base.ResetPosition();
+
+        Color c = _sprite.GetComponent<SpriteRenderer>().color;
+        c.a = 1f;
+        _sprite.GetComponent<SpriteRenderer>().color = c;
+    }
+
     private void DrawLine()
     {
-        float distance = Vector3.Distance(_startPosition, _transform.position);
-
-
         LineManager.instance.size = .15f;
         LineManager.instance.delta = .25f;
         LineManager.instance.color = new Color(.55f, 1f, .9f, 1f);
@@ -94,11 +100,13 @@ public class HeroMovement : Draggable
         //------------------------------------------------------------
 
         Color c = _sprite.GetComponent<SpriteRenderer>().color;
+
         if (isValid)
             c.a = 1f;
         else
             c.a = .5f;
+
         _sprite.GetComponent<SpriteRenderer>().color = c;
-        _shadow.SetActive(isValid);
+        _shadow.SetShadowActive(isValid);
     }
 }

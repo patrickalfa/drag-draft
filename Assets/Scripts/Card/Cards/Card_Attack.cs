@@ -12,6 +12,6 @@ public class Card_Attack : Card
     public override void Action(GameObject target)
     {
         base.Action(target);
-        target.AddComponent<HeroAttack>();
+        target.GetComponent<HeroAttack>().enabled = true;
     }
 }

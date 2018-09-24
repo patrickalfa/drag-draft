@@ -21,7 +21,9 @@ GameObject:
   - component: {fileID: 4339168427877104}
   - component: {fileID: 60861754967370406}
   - component: {fileID: 114030544892346818}
-  - component: {fileID: 114891707553183006}
+  - component: {fileID: 114081432101964132}
+  - component: {fileID: 114842953067415430}
+  - component: {fileID: 114764737792856522}
   m_Layer: 8
   m_Name: Warrior
   m_TagString: Untagged
@@ -114,7 +116,7 @@ MonoBehaviour:
   damage: 3
   range: 1
   speed: 2
---- !u!114 &114891707553183006
+--- !u!114 &114081432101964132
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,10 +124,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 1847732732426398}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77f106f814422384a962b2485ff4065a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114764737792856522
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1847732732426398}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80d7a0cb724e9ce439872f8dfe40b2a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raisedSortingOrder: 9
+  raisedSortingOrder: 0
+--- !u!114 &114842953067415430
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1847732732426398}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abbd15b27d9e4ee439f0726977b1a3cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  raisedSortingOrder: 0
+  lineColor: {r: 0, g: 0, b: 0, a: 0}
+  range: 0
+  targetType: 0
+  temporary: 0
 --- !u!212 &212273884228547220
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -162,7 +191,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9e240351ee4586647a4d1947f71e54f0, type: 3}
-  m_Color: {r: 1, g: 0.25, b: 0.25, a: 1}
+  m_Color: {r: 1, g: 0.63924325, b: 0.25098038, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

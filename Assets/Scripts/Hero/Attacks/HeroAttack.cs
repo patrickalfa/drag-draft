@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class HeroAttack : Targetable
 {
-    private Hero _hero;
+    protected Hero _hero;
 
     protected override void Start()
     {
@@ -13,7 +13,8 @@ public class HeroAttack : Targetable
 
         _hero = GetComponent<Hero>();
         raisedSortingOrder = 9;
-        targetType = TARGET_TYPE.HERO; //DEBUG
+        targetType = TARGET_TYPE.ENEMY;
+        temporary = false;
         range = _hero.range;
         lineColor = new Color(.25f, .55f, 1f, 1f);
 
@@ -30,20 +31,20 @@ public class HeroAttack : Targetable
 
     protected override void Action()
     {
-        Vector3 _pos = _transform.position;
-        _transform.DOMove(_targetObj.transform.position, .1f).OnComplete(() =>
-        {
-            _targetObj.GetComponent<IDamageable>().TakeDamage(_hero.damage);
-            _transform.DOMove(_pos, .1f);
-        });
-
         GameManager.instance.SpotlightHero(_hero, false);
         GameManager.instance.currentState = GAME_STATE.PLANNING;
+
+        Invoke("DoDamage", .1f);
 
         base.Action();
     }
 
-    private void HighlightHero()
+    protected virtual void DoDamage()
+    {
+        _targetObj.GetComponent<IDamageable>().TakeDamage(_hero.damage);
+    }
+
+    protected void HighlightHero()
     {
         TargetManager.instance.size = 1.25f;
         TargetManager.instance.color = new Color(.25f, .55f, 1f, .75f);

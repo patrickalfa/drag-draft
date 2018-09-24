@@ -2,6 +2,7 @@
 using UnityEngine.EventSystems;
 using DG.Tweening;
 
+[RequireComponent(typeof(ShadowCaster))]
 public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler
 {
     [Tooltip("Sorting order while raised when dragging.")]
@@ -12,7 +13,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     protected Transform _transform;
     protected Transform _sprite;
-    protected GameObject _shadow;
+    protected ShadowCaster _shadow;
 
     protected Vector3 _startPosition;
     protected Vector3 _offsetToMouse;
@@ -57,7 +58,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public virtual void OnPointerDown(PointerEventData eventData)
     {
         _sprite.GetComponent<SpriteRenderer>().sortingOrder = raisedSortingOrder;
-        _shadow.GetComponent<SpriteRenderer>().sortingOrder = raisedSortingOrder - 2;
+        _shadow.sortingOrder = raisedSortingOrder - 2;
 
         _sprite.DOComplete();
         _sprite.DOBlendableScaleBy(Vector3.one * .1f, .1f);
@@ -67,7 +68,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public virtual void OnPointerUp(PointerEventData eventData)
     {
         _sprite.GetComponent<SpriteRenderer>().sortingOrder = _sortingOrder;
-        _shadow.GetComponent<SpriteRenderer>().sortingOrder = _sortingOrder - 1;
+        _shadow.sortingOrder = _sortingOrder - 1;
 
         _sprite.DOComplete();
         _sprite.DOBlendableScaleBy(Vector3.one * -.1f, .1f);
@@ -82,9 +83,10 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     {
         _transform = transform;
         _sprite = _transform.Find("Sprite");
-        _startPosition = _transform.position;
         _sortingOrder = _sprite.GetComponent<SpriteRenderer>().sortingOrder;
-        CreateShadow();
+        _shadow = GetComponent<ShadowCaster>();
+
+        _shadow.Setup(_sprite, _sortingOrder - 1);
     }
 
     protected virtual void Update()
@@ -93,7 +95,11 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     protected virtual void OnDestroy()
     {
-        Destroy(_shadow);
+    }
+
+    protected virtual void OnEnable()
+    {
+        _startPosition = transform.position;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -101,14 +107,6 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     protected virtual void DragTo(Vector3 newPos)
     {
         _transform.position = newPos;
-    }
-
-    protected virtual void CreateShadow()
-    {
-        _shadow = Instantiate(_sprite.gameObject, _sprite.position, Quaternion.identity, _transform);
-        _shadow.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, .5f);
-        _shadow.GetComponent<SpriteRenderer>().sortingOrder = _sortingOrder - 1;
-        _shadow.name = "Shadow";
     }
 
     protected virtual void ResetPosition()

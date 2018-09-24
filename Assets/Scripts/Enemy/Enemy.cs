@@ -2,6 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hero : Character
+public class Enemy : Character
 {
 }

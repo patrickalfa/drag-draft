@@ -18,14 +18,16 @@ public class Reserve : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public virtual void OnPointerUp(PointerEventData eventData)
     {
         _over = false;
-        GameManager.instance.deck.Draw();
+
+        if (GameManager.instance.currentState == GAME_STATE.PLANNING)
+            GameManager.instance.deck.Draw();
     }
 
     #endregion
 
     private void Update()
     {
-        if (_over)
+        if (_over && GameManager.instance.currentState == GAME_STATE.PLANNING)
         {
             TargetManager.instance.size = 1.5f;
             TargetManager.instance.color = new Color(0f, 1f, 0f, .5f);

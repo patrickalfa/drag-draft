@@ -21,7 +21,9 @@ GameObject:
   - component: {fileID: 4866231334659310}
   - component: {fileID: 60634804342710706}
   - component: {fileID: 114508171125870786}
-  - component: {fileID: 114789730573022758}
+  - component: {fileID: 114678356994198170}
+  - component: {fileID: 114898581221809848}
+  - component: {fileID: 114344290031364092}
   m_Layer: 8
   m_Name: Archer
   m_TagString: Untagged
@@ -99,6 +101,18 @@ PolygonCollider2D:
     - - {x: 0, y: 0.5}
       - {x: -0.4330127, y: -0.25000003}
       - {x: 0.43301272, y: -0.24999996}
+--- !u!114 &114344290031364092
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1097908629137254}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80d7a0cb724e9ce439872f8dfe40b2a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  raisedSortingOrder: 0
 --- !u!114 &114508171125870786
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -114,7 +128,7 @@ MonoBehaviour:
   damage: 2
   range: 3
   speed: 3
---- !u!114 &114789730573022758
+--- !u!114 &114678356994198170
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,10 +136,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 1097908629137254}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80d7a0cb724e9ce439872f8dfe40b2a1, type: 3}
+  m_Script: {fileID: 11500000, guid: 77f106f814422384a962b2485ff4065a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raisedSortingOrder: 9
+--- !u!114 &114898581221809848
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1097908629137254}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 703a896f72eb7a24480bce7af9a95125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  raisedSortingOrder: 0
+  lineColor: {r: 0, g: 0, b: 0, a: 0}
+  range: 0
+  targetType: 0
+  temporary: 0
+  projectileSprite: {fileID: 21300000, guid: 9e240351ee4586647a4d1947f71e54f0, type: 3}
+  projectileScale: 0.25
 --- !u!212 &212376525144550756
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -12,6 +12,7 @@ public enum TARGET_TYPE
     NONE
 }
 
+[RequireComponent(typeof(ShadowCaster))]
 public class Targetable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler
 {
     [Tooltip("Sorting order while raised when targeting.")]
@@ -29,15 +30,20 @@ public class Targetable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     /// Range of the targeting
     /// </summary>
     public float range;
-    [Tooltip("Type of the targeting method of the card")]
+    [Tooltip("Type of the targeting method of the card.")]
     /// <summary>
     /// Type of the targeting method of the card
     /// </summary>
     public TARGET_TYPE targetType;
+    [Tooltip("If the action is temporary or permanent")]
+    /// <summary>
+    /// If the action is temporary or permanent
+    /// </summary>
+    public bool temporary;
 
     protected Transform _transform;
     protected Transform _sprite;
-    protected GameObject _shadow;
+    protected ShadowCaster _shadow;
 
     protected GameObject _targetObj;
     protected Vector2 _targetPos;
@@ -90,7 +96,7 @@ public class Targetable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     public virtual void OnPointerDown(PointerEventData eventData)
     {
         _sprite.GetComponent<SpriteRenderer>().sortingOrder = raisedSortingOrder;
-        _shadow.GetComponent<SpriteRenderer>().sortingOrder = raisedSortingOrder - 2;
+        _shadow.sortingOrder = raisedSortingOrder - 2;
 
         _sprite.DOComplete();
         _sprite.DOBlendableScaleBy(Vector3.one * .1f, .1f);
@@ -100,7 +106,7 @@ public class Targetable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     public virtual void OnPointerUp(PointerEventData eventData)
     {
         _sprite.GetComponent<SpriteRenderer>().sortingOrder = _sortingOrder;
-        _shadow.GetComponent<SpriteRenderer>().sortingOrder = _sortingOrder - 1;
+        _shadow.sortingOrder = _sortingOrder - 1;
 
         _sprite.DOComplete();
         _sprite.DOBlendableScaleBy(Vector3.one * -.1f, .1f);
@@ -116,7 +122,9 @@ public class Targetable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         _transform = transform;
         _sprite = _transform.Find("Sprite");
         _sortingOrder = _sprite.GetComponent<SpriteRenderer>().sortingOrder;
-        CreateShadow();
+        _shadow = GetComponent<ShadowCaster>();
+
+        _shadow.Setup(_sprite, _sortingOrder - 1);
     }
 
     protected virtual void Update()
@@ -149,7 +157,6 @@ public class Targetable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     protected virtual void OnDestroy()
     {
-        Destroy(_shadow);
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -161,14 +168,6 @@ public class Targetable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
             Vector3 norm = (newPos - _transform.position).normalized;
             _targetPos = _transform.position + (norm * range);
         }
-    }
-
-    protected virtual void CreateShadow()
-    {
-        _shadow = Instantiate(_sprite.gameObject, _sprite.position, Quaternion.identity, _transform);
-        _shadow.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, .5f);
-        _shadow.GetComponent<SpriteRenderer>().sortingOrder = _sortingOrder - 1;
-        _shadow.name = "Shadow";
     }
 
     protected virtual void DrawLine()
@@ -188,7 +187,10 @@ public class Targetable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     protected virtual void Action()
     {
-        Destroy(this);
+        if (temporary)
+            Destroy(this);
+        else
+            enabled = false;
     }
 
     // CHECKS //////////////////////////////
