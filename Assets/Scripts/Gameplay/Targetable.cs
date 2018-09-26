@@ -159,6 +159,15 @@ public class Targetable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     {
     }
 
+    protected virtual void OnEnable()
+    {
+    }
+
+    protected virtual void OnDisable()
+    {
+        _shadow.SetShadowActive(false);
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
 
     protected virtual void DragTo(Vector3 newPos)

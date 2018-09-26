@@ -102,6 +102,11 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         _startPosition = transform.position;
     }
 
+    protected virtual void OnDisable()
+    {
+        _shadow.SetShadowActive(false);
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
 
     protected virtual void DragTo(Vector3 newPos)

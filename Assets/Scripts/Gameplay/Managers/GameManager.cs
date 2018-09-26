@@ -21,9 +21,13 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public DeckManager deck;
     /// <summary>
-    /// Player's heroes
+    /// List of the player's heroes
     /// </summary>
     public List<Hero> heroes;
+    /// <summary>
+    /// List of enmies in play
+    /// </summary>
+    public List<Enemy> enemies;
     /// <summary>
     /// Maximum amount of action points that the player can have
     /// </summary>
@@ -68,10 +72,10 @@ public class GameManager : MonoBehaviour
 
         // DEBUG
         deck.Shuffle();
+        deck.Invoke("Draw", .25f);
         deck.Invoke("Draw", .5f);
+        deck.Invoke("Draw", .75f);
         deck.Invoke("Draw", 1f);
-        deck.Invoke("Draw", 1.5f);
-        deck.Invoke("Draw", 2f);
     }
 
     private void Update()
@@ -109,6 +113,9 @@ public class GameManager : MonoBehaviour
             case GAME_STATE.DRAWING:
                 break;
             case GAME_STATE.PLANNING:
+                // DEBUG
+                if (Input.GetKeyDown(KeyCode.Space))
+                    SkipTurn();
                 break;
             case GAME_STATE.ACTING:
                 break;
@@ -129,5 +136,27 @@ public class GameManager : MonoBehaviour
                     h.Unlock();
             } 
         }
+    }
+
+    public void SkipTurn()
+    {
+        StartCoroutine(WaitForEnemies());
+        currentState = GAME_STATE.SPECTATING;
+    }
+
+    private IEnumerator WaitForEnemies()
+    {
+        foreach (Enemy e in enemies)
+        {
+            if (e.gameObject.activeSelf)
+            {
+                e.Act();
+
+                while (e.acting)
+                    yield return null;
+            }
+        }
+
+        currentState = GAME_STATE.PLANNING;
     }
 }
