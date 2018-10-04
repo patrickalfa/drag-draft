@@ -72,10 +72,7 @@ public class GameManager : MonoBehaviour
 
         // DEBUG
         deck.Shuffle();
-        deck.Invoke("Draw", .25f);
-        deck.Invoke("Draw", .5f);
-        deck.Invoke("Draw", .75f);
-        deck.Invoke("Draw", 1f);
+        deck.DrawHand();
     }
 
     private void Update()
@@ -83,6 +80,10 @@ public class GameManager : MonoBehaviour
         OnStateUpdate();
         if (_lateState != currentState)
             OnStateChange();
+
+        // DEBUG
+        if (Input.GetKeyDown(KeyCode.Space))
+            SkipTurn();
     }
 
     private void OnStateChange()
@@ -113,9 +114,6 @@ public class GameManager : MonoBehaviour
             case GAME_STATE.DRAWING:
                 break;
             case GAME_STATE.PLANNING:
-                // DEBUG
-                if (Input.GetKeyDown(KeyCode.Space))
-                    SkipTurn();
                 break;
             case GAME_STATE.ACTING:
                 break;
@@ -140,6 +138,11 @@ public class GameManager : MonoBehaviour
 
     public void SkipTurn()
     {
+        if (currentState != GAME_STATE.PLANNING)
+            return;
+
+        deck.DiscardHand();
+
         StartCoroutine(WaitForEnemies());
         currentState = GAME_STATE.SPECTATING;
     }
@@ -157,6 +160,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        deck.DrawHand();
         currentState = GAME_STATE.PLANNING;
     }
 }

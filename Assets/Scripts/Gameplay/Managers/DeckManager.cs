@@ -21,6 +21,13 @@ public class DeckManager : MonoBehaviour
 
     ///////////////////////////////////////////////////////////////////////////////
 
+    [Tooltip("Transform of the reserve pile")]
+    [SerializeField] private Transform _reserveTransform;
+    [Tooltip("Transform of the discard pile")]
+    [SerializeField] private Transform _discardTransform;
+
+    ///////////////////////////////////////////////////////////////////////////////
+
     /// <summary>
     /// Y-Position of the player's hand
     /// </summary>
@@ -34,11 +41,21 @@ public class DeckManager : MonoBehaviour
     /// </summary>
     public void Draw()
     {
-        if (reserve.Count > 0 && hand.Count < 5)
+        if (reserve.Count == 0)
+        {
+            reserve.AddRange(discard.ToArray());
+            discard.Clear();
+            Shuffle();
+        }
+
+        if (hand.Count < 5)
         {
             GameManager.instance.currentState = GAME_STATE.DRAWING;
             StopCoroutine("WaitForDrawToComplete");
             StartCoroutine("WaitForDrawToComplete");
+
+            reserve[0].transform.position = _reserveTransform.position;
+            reserve[0].GetComponent<Collider2D>().enabled = false;
 
             hand.Add(reserve[0]);
             reserve.RemoveAt(0);
@@ -52,12 +69,14 @@ public class DeckManager : MonoBehaviour
     /// <param name="card">Card to be discarded</param>
     public void Discard(Card card)
     {
+        card.GetComponent<Collider2D>().enabled = false;
+
         hand.Remove(card);
         discard.Add(card);
         RearrangeHand();
 
         card.transform.DOKill();
-        card.transform.DOMove(Vector3.up * -10f, .5f);
+        card.transform.DOMove(_discardTransform.position, .5f);
     }
 
     /// <summary>
@@ -76,12 +95,10 @@ public class DeckManager : MonoBehaviour
         int count = hand.Count;
         float dist = .75f;
 
-        print(count);
-
         for (int i = 0; i < count; i++)
         {
             Vector3 newPos = Vector3.up * _yPos;
-            newPos.x = -(dist * count * .5f) + ((i + .5f) * dist);
+            newPos.x = -(dist * count * .5f) + ((count - i - .5f) * dist);
             hand[i].DOComplete();
             hand[i].transform.DOMove(newPos, .5f);
         }
@@ -113,6 +130,24 @@ public class DeckManager : MonoBehaviour
 
         _yPos = -4f;
         RearrangeHand();
+    }
+
+    /// <summary>
+    /// Draw an entire handful of cards
+    /// </summary>
+    public void DrawHand()
+    {
+        for (int i = 0; i < 5; i++)
+            Draw();
+    }
+
+    /// <summary>
+    /// Discard the entire hand
+    /// </summary>
+    public void DiscardHand()
+    {
+        while (hand.Count > 0)
+            Discard(hand[0]);
     }
 
     private IEnumerator WaitForDrawToComplete()

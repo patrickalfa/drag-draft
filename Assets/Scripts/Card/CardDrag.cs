@@ -32,7 +32,7 @@ public class CardDrag : Draggable
                 CheckAction(); break;
         }
 
-        CheckActionDiscard();
+        //CheckActionDiscard();
     }
 
     #endregion
@@ -60,7 +60,7 @@ public class CardDrag : Draggable
                     CheckTargetBoard(); break;
             }
 
-            CheckTargetDiscard();
+            //CheckTargetDiscard();
         }
         else
         {
