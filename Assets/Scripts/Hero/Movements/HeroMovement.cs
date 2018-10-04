@@ -4,8 +4,10 @@ using DG.Tweening;
 
 public class HeroMovement : Draggable
 {
-    private Hero _hero;
-    private bool isValid;
+    public bool temporary = false;
+
+    protected Hero _hero;
+    protected bool isValid;
 
     protected override void Start()
     {
@@ -39,7 +41,11 @@ public class HeroMovement : Draggable
         {
             GameManager.instance.SpotlightHero(_hero, false);
             GameManager.instance.currentState = GAME_STATE.PLANNING;
-            enabled = false;
+
+            if (temporary)
+                Destroy(this);
+            else
+                enabled = false;
         }
         else
             ResetPosition();  
@@ -67,7 +73,7 @@ public class HeroMovement : Draggable
         _sprite.GetComponent<SpriteRenderer>().color = c;
     }
 
-    private void DrawLine()
+    protected virtual void DrawLine()
     {
         LineManager.instance.size = .15f;
         LineManager.instance.delta = .25f;
@@ -76,7 +82,7 @@ public class HeroMovement : Draggable
         LineManager.instance.DrawDottedLine(_startPosition, _transform.position);
     }
 
-    private void HighlightHero()
+    protected virtual void HighlightHero()
     {
         TargetManager.instance.size = 1.25f;
         TargetManager.instance.color = new Color(.55f, 1f, .9f, .75f);
@@ -84,7 +90,7 @@ public class HeroMovement : Draggable
         TargetManager.instance.DrawMarker(_startPosition);
     }
 
-    private void CheckValidMovement()
+    protected virtual void CheckValidMovement()
     {
         isValid = true;
         Collider2D[] cols = Physics2D.OverlapCircleAll(_transform.position, .5f, LayerMask.GetMask("Hero", "Enemy"));

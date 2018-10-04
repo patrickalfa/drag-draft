@@ -116,6 +116,7 @@ MonoBehaviour:
   damage: 3
   range: 1
   speed: 2
+  type: 1
 --- !u!114 &114081432101964132
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -9,6 +9,10 @@ public class CardDrag : Draggable
     /// Type of the targeting method of the card
     /// </summary>
     public TARGET_TYPE targetType;
+    /// <summary>
+    /// Type of the card owner
+    /// </summary>
+    public HERO_TYPE ownerType;
 
     private Card _card;
     private GameObject _targetObj;
@@ -75,7 +79,9 @@ public class CardDrag : Draggable
     {
         Collider2D col = Physics2D.OverlapCircle(_transform.position, .1f, LayerMask.GetMask("Hero"));
 
-        if (col)
+        if (col &&
+            (ownerType == HERO_TYPE.NONE ||
+            col.GetComponent<Hero>().type == ownerType))
         {
             _targetObj = col.gameObject;
 
