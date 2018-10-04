@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114197351123310736}
   - component: {fileID: 61072795918492080}
   m_Layer: 0
-  m_Name: Card3
+  m_Name: Card_Curse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,7 +54,7 @@ Transform:
   m_GameObject: {fileID: 1954059734292368}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.65, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4619767251708338}
   m_RootOrder: 0
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   raisedSortingOrder: 19
-  targetType: 0
+  targetType: 5
 --- !u!114 &114505186327790682
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -171,8 +171,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 12
-  m_Sprite: {fileID: 21300000, guid: 1f1d41efd7352bf49874f85b17883fe9, type: 3}
-  m_Color: {r: 0.56074834, g: 0.23921567, b: 1, a: 1}
+  m_Sprite: {fileID: 21300008, guid: e1fad7e2e174f5a408b783b13d165201, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

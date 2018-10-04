@@ -88,7 +88,6 @@ public class Enemy : Character
 
     protected void Action_MoveAwayFromTarget()
     {
-        float distance = Vector2.Distance(_transform.position, _target.position);
         Vector3 newDirection = (_transform.position - _target.position).normalized;
         Vector3 newPos = _target.position + (newDirection * range);
 

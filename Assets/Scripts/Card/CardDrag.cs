@@ -29,7 +29,7 @@ public class CardDrag : Draggable
             case TARGET_TYPE.BOARD:
                 CheckActionPosition(); break;
             case TARGET_TYPE.NONE:
-                CheckAction(); break;
+                ResetPosition(); break;
         }
 
         //CheckActionDiscard();
