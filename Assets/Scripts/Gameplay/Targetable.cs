@@ -160,14 +160,6 @@ public class Targetable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         }
     }
 
-    protected virtual void OnDestroy()
-    {
-    }
-
-    protected virtual void OnEnable()
-    {
-    }
-
     protected virtual void OnDisable()
     {
         _shadow.SetShadowActive(false);
@@ -247,10 +239,38 @@ public class Targetable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     private void CheckTargetBoard()
     {
+        _targetPos = _transform.position;
+
+        TargetManager.instance.size = 1.5f;
+        TargetManager.instance.color = new Color(lineColor.r, lineColor.g, lineColor.b, .5f);
+        TargetManager.instance.sortingOrder = 1;
+        TargetManager.instance.shape = TARGET_SHAPE.CIRCLE;
+        TargetManager.instance.DrawMarker(_transform.position);
     }
 
     private void CheckTargetAreaHero()
     {
+        TargetManager.instance.size = size;
+        TargetManager.instance.sortingOrder = -1;
+        TargetManager.instance.shape = TARGET_SHAPE.CIRCLE;
+        TargetManager.instance.color = new Color(lineColor.r, lineColor.g, lineColor.b, .5f);
+        TargetManager.instance.DrawMarker(_targetPos);
+
+        Collider2D[] cols = Physics2D.OverlapCircleAll(_targetPos, size * .5f, LayerMask.GetMask("Hero"));
+
+        int length = cols.Length;
+        if (length > 0)
+        {
+            _targetMultiple = new GameObject[length];
+            for (int i = 0; i < length; i++)
+            {
+                _targetMultiple[i] = cols[i].gameObject;
+                TargetManager.instance.size = 1.25f;
+                TargetManager.instance.DrawMarker(_targetMultiple[i].transform.position);
+            }
+        }
+        else
+            _targetMultiple = null;
     }
 
     private void CheckTargetAreaEnemy()

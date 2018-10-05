@@ -140,10 +140,6 @@ public class CardDrag : Draggable
         }
     }
 
-    private void CheckAction()
-    {
-    }
-
     private void CheckActionPosition()
     {
         if (_transform.position.y > -3f)
