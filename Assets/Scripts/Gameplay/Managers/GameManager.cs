@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
         set
         {
             m_ap = value;
+            UIManager.instance.ChangeText("txtAP", ap + "/" + maxAP);
         }
     }
 
@@ -73,6 +74,7 @@ public class GameManager : MonoBehaviour
         // DEBUG
         deck.Shuffle();
         deck.DrawHand();
+        ap = maxAP;
     }
 
     private void Update()
@@ -161,6 +163,7 @@ public class GameManager : MonoBehaviour
         }
 
         deck.DrawHand();
+        ap = maxAP;
         currentState = GAME_STATE.PLANNING;
     }
 }

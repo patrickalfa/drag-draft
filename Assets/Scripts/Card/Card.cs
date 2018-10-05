@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-    protected bool m_revealed;
+    protected bool active;
     protected SpriteRenderer _renderer;
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -13,43 +13,44 @@ public class Card : MonoBehaviour
     /// The amount of AP needed for the card to be played
     /// </summary>
     public int cost;
-    /// <summary>
-    /// Sprites of the respective face of the card
-    /// </summary>
-    public Sprite frontFace, backFace;
-    /// <summary>
-    /// Current orientation of the card
-    /// </summary>
-    public bool revealed
-    {
-        get
-        {
-            return m_revealed;
-        }
-        set
-        {
-            m_revealed = value;
-            _renderer.sprite = (revealed ? frontFace : backFace);
-        }
-    }
 
     ///////////////////////////////////////////////////////////////////////////////
 
+    protected virtual void Update()
+    {
+        if (!active)
+        {
+            if (GameManager.instance.ap >= cost)
+                SetActive(true);
+        }
+        else
+        {
+            if (GameManager.instance.ap < cost)
+                SetActive(false);
+        }
+    }
+
     public virtual void Action()
     {
+        GameManager.instance.ap -= cost;
         GameManager.instance.currentState = GAME_STATE.ACTING;
         GameManager.instance.deck.Discard(this);
     }
 
     public virtual void Action(Vector2 target)
     {
-        GameManager.instance.currentState = GAME_STATE.ACTING;
-        GameManager.instance.deck.Discard(this);
+        Action();
     }
 
     public virtual void Action(GameObject target)
     {
-        GameManager.instance.currentState = GAME_STATE.ACTING;
-        GameManager.instance.deck.Discard(this);
+        Action();
+    }
+
+    public virtual void SetActive(bool state)
+    {
+        active = state;
+        GetComponent<Collider2D>().enabled = state;
+        _renderer.color = state ? Color.white : new Color(1f, 1f, 1f, .5f);
     }
 }

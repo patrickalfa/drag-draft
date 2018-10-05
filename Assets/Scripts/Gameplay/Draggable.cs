@@ -116,7 +116,12 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public virtual void ResetPosition()
     {
+        GetComponent<Collider2D>().enabled = false;
+
         _transform.DOComplete();
-        _transform.DOMove(_startPosition, .5f);
+        _transform.DOMove(_startPosition, .5f).OnComplete(() =>
+        {
+            GetComponent<Collider2D>().enabled = true;
+        });
     }
 }
