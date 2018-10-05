@@ -48,7 +48,7 @@ public class ArcherDoubleShot : Targetable
     protected void HighlightHero()
     {
         TargetManager.instance.size = 1.25f;
-        TargetManager.instance.color = new Color(.3f, .56f, .29f, .75f);
+        TargetManager.instance.color = new Color(lineColor.r, lineColor.g, lineColor.b, .75f);
         TargetManager.instance.sortingOrder = -1;
         TargetManager.instance.DrawMarker(_transform.position);
     }

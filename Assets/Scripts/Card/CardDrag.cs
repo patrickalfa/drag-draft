@@ -114,6 +114,16 @@ public class CardDrag : Draggable
 
     private void CheckTargetBoard()
     {
+        if (_transform.position.y > -3f)
+        {
+            _targetPos = _transform.position;
+
+            TargetManager.instance.size = 1.5f;
+            TargetManager.instance.color = new Color(1f, 1f, 1f, .5f);
+            TargetManager.instance.sortingOrder = 1;
+            TargetManager.instance.shape = TARGET_SHAPE.CIRCLE;
+            TargetManager.instance.DrawMarker(_transform.position);
+        }
     }
 
     private void CheckTargetDiscard()
@@ -136,6 +146,10 @@ public class CardDrag : Draggable
 
     private void CheckActionPosition()
     {
+        if (_transform.position.y > -3f)
+            _card.Action(_targetPos);
+        else
+            ResetPosition();
     }
 
     private void CheckActionObject()
@@ -143,7 +157,6 @@ public class CardDrag : Draggable
         if (_targetObj)
         {
             _card.Action(_targetObj);
-            GameManager.instance.deck.Discard(_card);
         }
         else
             ResetPosition();

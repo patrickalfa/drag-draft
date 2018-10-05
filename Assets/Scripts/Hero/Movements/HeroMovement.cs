@@ -64,7 +64,7 @@ public class HeroMovement : Draggable
         }
     }
 
-    protected override void ResetPosition()
+    public override void ResetPosition()
     {
         base.ResetPosition();
 

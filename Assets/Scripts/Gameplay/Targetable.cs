@@ -30,6 +30,11 @@ public class Targetable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     /// Range of the targeting
     /// </summary>
     public float range;
+    [Tooltip("Size of the targeting.")]
+    /// <summary>
+    /// Size of the targeting
+    /// </summary>
+    public float size;
     [Tooltip("Type of the targeting method of the card.")]
     /// <summary>
     /// Type of the targeting method of the card
@@ -250,5 +255,26 @@ public class Targetable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     private void CheckTargetAreaEnemy()
     {
+        TargetManager.instance.size = size;
+        TargetManager.instance.sortingOrder = -1;
+        TargetManager.instance.shape = TARGET_SHAPE.CIRCLE;
+        TargetManager.instance.color = new Color(lineColor.r, lineColor.g, lineColor.b, .5f);
+        TargetManager.instance.DrawMarker(_targetPos);
+
+        Collider2D[] cols = Physics2D.OverlapCircleAll(_targetPos, size * .5f, LayerMask.GetMask("Enemy"));
+
+        int length = cols.Length;
+        if (length > 0)
+        {
+            _targetMultiple = new GameObject[length];
+            for (int i = 0; i < length; i++)
+            {
+                _targetMultiple[i] = cols[i].gameObject;
+                TargetManager.instance.size = 1.25f;
+                TargetManager.instance.DrawMarker(_targetMultiple[i].transform.position);
+            }
+        }
+        else
+            _targetMultiple = null;
     }
 }

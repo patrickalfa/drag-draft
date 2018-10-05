@@ -5,10 +5,14 @@ using DG.Tweening;
 
 public class EnemyDummy : Enemy
 {
-    public override void Act()
+    public override bool Act()
     {
-        base.Act();
+        if (!base.Act())
+            return false;
+
         _sprite.transform.DOBlendableRotateBy(Vector3.forward * 180f, 1f);
+
         Invoke("EndAction", 1f);
+        return true;
     }
 }

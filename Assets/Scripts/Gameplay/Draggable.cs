@@ -114,7 +114,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         _transform.position = newPos;
     }
 
-    protected virtual void ResetPosition()
+    public virtual void ResetPosition()
     {
         _transform.DOComplete();
         _transform.DOMove(_startPosition, .5f);

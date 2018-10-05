@@ -16,8 +16,7 @@ public class TargetManager : MonoBehaviour
     public int sortingOrder;
     public TARGET_SHAPE shape;
 
-    [SerializeField]
-    private Sprite[] shapes;
+    public Sprite[] sprites;
 
     private static TargetManager m_instance;
     public static TargetManager instance
@@ -69,7 +68,7 @@ public class TargetManager : MonoBehaviour
 
         SpriteRenderer sr = gameObject.AddComponent<SpriteRenderer>();
         sr.sortingOrder = sortingOrder;
-        sr.sprite = shapes[(int)shapeID];
+        sr.sprite = sprites[(int)shapeID];
         sr.color = color;
 
         return gameObject;

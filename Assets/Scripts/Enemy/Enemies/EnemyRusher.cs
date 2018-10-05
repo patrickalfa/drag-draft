@@ -5,9 +5,10 @@ using DG.Tweening;
 
 public class EnemyRusher : Enemy
 {
-    public override void Act()
+    public override bool Act()
     {
-        base.Act();
+        if (!base.Act())
+            return false;
 
         _target = Target_ClosestHero();
 
@@ -17,5 +18,6 @@ public class EnemyRusher : Enemy
             Action_MoveTowardsTarget();
 
         Invoke("EndAction", 1f);
+        return true;
     }
 }

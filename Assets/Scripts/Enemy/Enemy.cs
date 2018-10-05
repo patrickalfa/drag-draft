@@ -6,12 +6,21 @@ using DG.Tweening;
 public class Enemy : Character
 {
     public bool acting = false;
+    public bool canAct = true;
 
     protected Transform _target;
 
-    public virtual void Act()
+    public virtual bool Act()
     {
         acting = true;
+
+        if (!canAct)
+        {
+            Invoke("EndAction", 1f);
+            return false;
+        }
+
+        return true;
     }
 
     public virtual void EndAction()

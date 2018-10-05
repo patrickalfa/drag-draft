@@ -38,15 +38,18 @@ public class Card : MonoBehaviour
     public virtual void Action()
     {
         GameManager.instance.currentState = GAME_STATE.ACTING;
+        GameManager.instance.deck.Discard(this);
     }
 
     public virtual void Action(Vector2 target)
     {
         GameManager.instance.currentState = GAME_STATE.ACTING;
+        GameManager.instance.deck.Discard(this);
     }
 
     public virtual void Action(GameObject target)
     {
         GameManager.instance.currentState = GAME_STATE.ACTING;
+        GameManager.instance.deck.Discard(this);
     }
 }

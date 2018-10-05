@@ -58,7 +58,7 @@ public class WarriorCharge : HeroMovement
             TargetManager.instance.DrawMarker(_target.transform.position);
 
             Vector3 direction = (_target.position - _startPosition).normalized;
-            _knockedPos = _target.position + (direction * 2f);
+            _knockedPos = _target.position + (direction * 1.5f);
 
             LineManager.instance.size = .15f;
             LineManager.instance.delta = .25f;

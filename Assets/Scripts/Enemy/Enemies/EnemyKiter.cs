@@ -5,9 +5,10 @@ using DG.Tweening;
 
 public class EnemyKiter : Enemy
 {
-    public override void Act()
+    public override bool Act()
     {
-        base.Act();
+        if (!base.Act())
+            return false;
 
         _target = Target_ClosestHero();
 
@@ -22,5 +23,6 @@ public class EnemyKiter : Enemy
             Action_MoveTowardsTarget();
 
         Invoke("EndAction", 1f);
+        return true;
     }
 }
