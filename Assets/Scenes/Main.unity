@@ -142,7 +142,7 @@ Transform:
   - {fileID: 1521396510}
   - {fileID: 887314003}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &25331416
 GameObject:
@@ -729,7 +729,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &599533109
 GameObject:
@@ -761,7 +761,7 @@ Transform:
   - {fileID: 1478445460}
   - {fileID: 1931920875}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &605862384
 Prefab:
@@ -816,8 +816,9 @@ GameObject:
   - component: {fileID: 631344560}
   - component: {fileID: 631344559}
   - component: {fileID: 631344558}
+  - component: {fileID: 631344562}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -893,13 +894,24 @@ RectTransform:
   - {fileID: 1086478463}
   - {fileID: 694646192}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &631344562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 631344557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a37e1ec7fed6af141b7af483dd7b6120, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &647186230
 Prefab:
   m_ObjectHideFlags: 0
@@ -1165,7 +1177,7 @@ Transform:
   m_Children:
   - {fileID: 25331417}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &771489064
 Prefab:
@@ -2205,9 +2217,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'SKIP
-
-    TURN'
+  m_Text: END TURN
 --- !u!222 &1498831811
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2698,7 +2708,7 @@ Transform:
   - {fileID: 1818316679}
   - {fileID: 245147283}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1813140854
 Prefab:

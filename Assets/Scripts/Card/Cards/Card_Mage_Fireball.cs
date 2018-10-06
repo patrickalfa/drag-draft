@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Card_Mage_Fireball : Card
 {
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+
+        cost = 2;
+
         GetComponent<CardDrag>().targetType = TARGET_TYPE.HERO;
         GetComponent<CardDrag>().ownerType = HERO_TYPE.MAGE;
     }

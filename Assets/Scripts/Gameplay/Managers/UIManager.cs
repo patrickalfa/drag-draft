@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        _transform = _transform;
+        _transform = transform;
     }
 
     public void ChangeText(string name, string text)

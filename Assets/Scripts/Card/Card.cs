@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-    protected bool active;
-    protected SpriteRenderer _renderer;
+    public bool active;
+    protected SpriteRenderer _sprite;
 
     ///////////////////////////////////////////////////////////////////////////////
 
@@ -15,6 +15,11 @@ public class Card : MonoBehaviour
     public int cost;
 
     ///////////////////////////////////////////////////////////////////////////////
+
+    protected virtual void Start()
+    {
+        _sprite = transform.Find("Sprite").GetComponent<SpriteRenderer>();
+    }
 
     protected virtual void Update()
     {
@@ -50,7 +55,6 @@ public class Card : MonoBehaviour
     public virtual void SetActive(bool state)
     {
         active = state;
-        GetComponent<Collider2D>().enabled = state;
-        _renderer.color = state ? Color.white : new Color(1f, 1f, 1f, .5f);
+        _sprite.color = state ? Color.white : new Color(1f, 1f, 1f, .5f);
     }
 }

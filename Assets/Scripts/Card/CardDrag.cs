@@ -20,8 +20,27 @@ public class CardDrag : Draggable
 
     #region Interface Implementations
 
+    public override void OnBeginDrag(PointerEventData eventData)
+    {
+        if (!_card.active)
+            return;
+
+        base.OnBeginDrag(eventData);
+    }
+
+    public override void OnDrag(PointerEventData eventData)
+    {
+        if (!_card.active)
+            return;
+
+        base.OnDrag(eventData);
+    }
+
     public override void OnEndDrag(PointerEventData eventData)
     {
+        if (!_card.active)
+            return;
+
         base.OnEndDrag(eventData);
 
         switch (targetType)

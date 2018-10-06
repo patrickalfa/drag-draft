@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Card_Mage_Freeze : Card
 {
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+
+        cost = 0;
+
         GetComponent<CardDrag>().targetType = TARGET_TYPE.HERO;
         GetComponent<CardDrag>().ownerType = HERO_TYPE.MAGE;
     }

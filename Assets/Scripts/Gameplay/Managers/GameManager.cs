@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
         set
         {
             m_ap = value;
-            UIManager.instance.ChangeText("txtAP", ap + "/" + maxAP);
+            UIManager.instance.ChangeText("TxtAP", ap + "/" + maxAP);
         }
     }
 

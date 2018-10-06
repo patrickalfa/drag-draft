@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Card_AP : Card
 {
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+
+        cost = 0;
+
         GetComponent<CardDrag>().targetType = TARGET_TYPE.BOARD;
         GetComponent<CardDrag>().ownerType = HERO_TYPE.NONE;
     }
@@ -14,6 +18,6 @@ public class Card_AP : Card
     {
         base.Action(target);
         GameManager.instance.deck.Draw();
-        //TODO: Increase AP
+        GameManager.instance.ap++;
     }
 }
