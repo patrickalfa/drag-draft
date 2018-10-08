@@ -71,6 +71,9 @@ public class DeckManager : MonoBehaviour
     {
         card.GetComponent<Collider2D>().enabled = false;
 
+        if (discard.Contains(card))
+            print("JATEM");
+
         hand.Remove(card);
         discard.Add(card);
         RearrangeHand();

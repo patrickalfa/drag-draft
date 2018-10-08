@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Card_Archer_DoubleShot : Card
 {
+    private ArcherDoubleShot _cardAction;
+
     protected override void Start()
     {
         base.Start();
@@ -17,6 +19,12 @@ public class Card_Archer_DoubleShot : Card
     public override void Action(GameObject target)
     {
         base.Action(target);
-        target.AddComponent<ArcherDoubleShot>();
+        _cardAction = target.AddComponent<ArcherDoubleShot>();
+    }
+
+    public override void Cancel()
+    {
+        base.Cancel();
+        Destroy(_cardAction);
     }
 }

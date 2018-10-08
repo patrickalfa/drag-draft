@@ -92,6 +92,12 @@ public class CardDrag : Draggable
         }
     }
 
+    public void MoveForward()
+    {
+        _transform.DOKill();
+        _transform.DOMove(Vector3.up * -3.75f, .25f);
+    }
+
     // CHECKS //////////////////////////////
 
     private void CheckTargetHero()

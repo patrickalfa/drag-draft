@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Card_Warrior_Charge : Card
 {
+    private WarriorCharge _cardAction;
+
     protected override void Start()
     {
         base.Start();
@@ -17,6 +19,12 @@ public class Card_Warrior_Charge : Card
     public override void Action(GameObject target)
     {
         base.Action(target);
-        target.AddComponent<WarriorCharge>();
+        _cardAction = target.AddComponent<WarriorCharge>();
+    }
+
+    public override void Cancel()
+    {
+        base.Cancel();
+        Destroy(_cardAction);
     }
 }

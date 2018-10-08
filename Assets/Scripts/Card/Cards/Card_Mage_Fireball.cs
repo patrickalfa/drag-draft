@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Card_Mage_Fireball : Card
 {
+    private MageFireball _cardAction;
+
     protected override void Start()
     {
         base.Start();
@@ -17,6 +19,12 @@ public class Card_Mage_Fireball : Card
     public override void Action(GameObject target)
     {
         base.Action(target);
-        target.AddComponent<MageFireball>();
+        _cardAction = target.AddComponent<MageFireball>();
+    }
+
+    public override void Cancel()
+    {
+        base.Cancel();
+        Destroy(_cardAction);
     }
 }

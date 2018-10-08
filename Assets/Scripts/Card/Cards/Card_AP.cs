@@ -17,6 +17,11 @@ public class Card_AP : Card
     public override void Action(Vector2 target)
     {
         base.Action(target);
+
+        inPlay = false;
+        GameManager.instance.deck.Discard(this);
+        GameManager.instance.playedCard = null;
+
         GameManager.instance.deck.Draw();
         GameManager.instance.ap++;
     }

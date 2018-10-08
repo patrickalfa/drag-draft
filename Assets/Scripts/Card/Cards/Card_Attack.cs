@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Card_Attack : Card
 {
+    private HeroAttack _cardAction;
+
     protected override void Start()
     {
         base.Start();
@@ -17,6 +19,14 @@ public class Card_Attack : Card
     public override void Action(GameObject target)
     {
         base.Action(target);
-        target.GetComponent<HeroAttack>().enabled = true;
+
+        _cardAction = target.GetComponent<HeroAttack>();
+        _cardAction.enabled = true;
+    }
+
+    public override void Cancel()
+    {
+        base.Cancel();
+        _cardAction.enabled = false;
     }
 }

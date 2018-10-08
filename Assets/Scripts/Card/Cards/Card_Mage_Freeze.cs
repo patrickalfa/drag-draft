@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Card_Mage_Freeze : Card
 {
+    private MageFreeze _cardAction;
+
     protected override void Start()
     {
         base.Start();
@@ -17,6 +19,12 @@ public class Card_Mage_Freeze : Card
     public override void Action(GameObject target)
     {
         base.Action(target);
-        target.AddComponent<MageFreeze>();
+        _cardAction = target.AddComponent<MageFreeze>();
+    }
+
+    public override void Cancel()
+    {
+        base.Cancel();
+        Destroy(_cardAction);
     }
 }

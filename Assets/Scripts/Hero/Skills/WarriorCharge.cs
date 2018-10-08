@@ -76,12 +76,16 @@ public class WarriorCharge : HeroMovement
         isValid = true;
         Collider2D[] cols = Physics2D.OverlapCircleAll(_transform.position, .5f, LayerMask.GetMask("Hero", "Enemy"));
 
+        bool foundTarget = false;
         foreach (Collider2D col in cols)
         {
             if (col)
             {
-                if (col.GetComponent<Enemy>())
+                if (col.GetComponent<Enemy>() && !foundTarget)
+                {
+                    foundTarget = true;
                     CheckTarget(col);
+                }
                 else if (col.gameObject != gameObject)
                     isValid = false;
             }

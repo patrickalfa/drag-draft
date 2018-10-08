@@ -21,6 +21,11 @@ public class Card_Defense : Card
         else
         {
             base.Action(target);
+
+            inPlay = false;
+            GameManager.instance.deck.Discard(this);
+            GameManager.instance.playedCard = null;
+
             target.AddComponent<StatusHeroDefending>();
         }
     }

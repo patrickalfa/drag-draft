@@ -29,4 +29,9 @@ public class UIManager : MonoBehaviour
     {
         _transform.Find(name).GetComponent<Text>().text = text;
     }
+
+    public void SetActive(string name, bool state)
+    {
+        _transform.Find(name).gameObject.SetActive(state);
+    }
 }

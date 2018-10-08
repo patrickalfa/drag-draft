@@ -63,6 +63,7 @@ public class GameManager : MonoBehaviour
 
     private GAME_STATE _lateState;
     public GAME_STATE currentState;
+    public Card playedCard;
 
     ///////////////////////////////////////////////////////////////////////////////
 
@@ -97,9 +98,12 @@ public class GameManager : MonoBehaviour
                 break;
             case GAME_STATE.PLANNING:
                 deck.UnlockHand();
+                DiscardPlayedCard();
+                UIManager.instance.SetActive("BtnCancel", false);
                 break;
             case GAME_STATE.ACTING:
                 deck.LockHand(true);
+                UIManager.instance.SetActive("BtnCancel", true);
                 break;
             case GAME_STATE.SPECTATING:
                 deck.LockHand(false);
@@ -165,5 +169,24 @@ public class GameManager : MonoBehaviour
         deck.DrawHand();
         ap = maxAP;
         currentState = GAME_STATE.PLANNING;
+    }
+
+    public void CancelPlayedCard()
+    {
+        if (playedCard)
+            playedCard.Cancel();
+
+        SpotlightHero(null, false);
+        currentState = GAME_STATE.PLANNING;
+    }
+
+    public void DiscardPlayedCard()
+    {
+        if (playedCard)
+        {
+            playedCard.inPlay = false;
+            deck.Discard(playedCard);
+            playedCard = null;
+        }
     }
 }
