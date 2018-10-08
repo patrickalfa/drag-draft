@@ -19,11 +19,8 @@ public class HeroMovement : Draggable
         GameManager.instance.SpotlightHero(_hero, true);
     }
 
-    protected override void Update()
+    protected void Update()
     {
-        base.Update();
-
-
         if (dragging)
         {
             DrawLine();

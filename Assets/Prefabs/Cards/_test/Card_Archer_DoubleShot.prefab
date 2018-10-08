@@ -123,7 +123,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c358246c05cde694fa502244191d7397, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
+  inPlay: 0
   cost: 1
+  description: 'DOUBLE SHOT (Archer):
+
+    Attacks the targeted enemy twice.'
 --- !u!114 &114534109381037346
 MonoBehaviour:
   m_ObjectHideFlags: 1

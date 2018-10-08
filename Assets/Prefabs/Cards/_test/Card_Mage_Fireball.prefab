@@ -134,7 +134,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e74180ee8b844249b0fe0c046f87ead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
+  inPlay: 0
   cost: 2
+  description: 'FIREBALL (Mage):
+
+    Damages all enemies enemies on an area.
+
+    (Range = 2, Radius = 2).'
 --- !u!212 &212369750254014454
 SpriteRenderer:
   m_ObjectHideFlags: 1

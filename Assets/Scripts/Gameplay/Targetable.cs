@@ -13,7 +13,7 @@ public enum TARGET_TYPE
 }
 
 [RequireComponent(typeof(ShadowCaster))]
-public class Targetable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler
+public class Targetable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [Tooltip("Sorting order while raised when targeting.")]
     /// <summary>
@@ -68,6 +68,15 @@ public class Targetable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         _zDistanceToCamera = Mathf.Abs(_transform.position.z - Camera.main.transform.position.z);
 
         dragging = true;
+
+        //-------------------------------------------------------------------------
+
+        _sprite.GetComponent<SpriteRenderer>().sortingOrder = raisedSortingOrder;
+        _shadow.sortingOrder = raisedSortingOrder - 2;
+
+        _sprite.DOComplete();
+        _sprite.DOBlendableScaleBy(Vector3.one * .1f, .1f);
+        _sprite.DOLocalMove((Vector3.up + Vector3.right) * .1f, .1f);
     }
 
     public virtual void OnDrag(PointerEventData eventData)
@@ -96,20 +105,9 @@ public class Targetable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         }
         else
             Action();
-    }
 
-    public virtual void OnPointerDown(PointerEventData eventData)
-    {
-        _sprite.GetComponent<SpriteRenderer>().sortingOrder = raisedSortingOrder;
-        _shadow.sortingOrder = raisedSortingOrder - 2;
+        //-------------------------------------------------------------------------
 
-        _sprite.DOComplete();
-        _sprite.DOBlendableScaleBy(Vector3.one * .1f, .1f);
-        _sprite.DOLocalMove((Vector3.up + Vector3.right) * .1f, .1f);
-    }
-
-    public virtual void OnPointerUp(PointerEventData eventData)
-    {
         _sprite.GetComponent<SpriteRenderer>().sortingOrder = _sortingOrder;
         _shadow.sortingOrder = _sortingOrder - 1;
 

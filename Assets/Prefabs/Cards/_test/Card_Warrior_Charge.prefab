@@ -134,7 +134,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de659fdbffacd5b44ad1042dd421bc1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
+  inPlay: 0
   cost: 1
+  description: 'CHARGE (Warrior):
+
+    Moves to a location, dealing damage to an eventual enemy there and pushing it
+    away.'
 --- !u!212 &212369750254014454
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -17,8 +17,9 @@ public class Card : MonoBehaviour
     public int cost;
 
     /// <summary>
-    /// The description of the card action
+    /// The description of the action
     /// </summary>
+    [TextArea]
     public string description;
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -26,14 +27,14 @@ public class Card : MonoBehaviour
     protected virtual void Start()
     {
         _sprite = transform.Find("Sprite").GetComponent<SpriteRenderer>();
-        _costSprite = transform.Find("Cost").GetComponent<SpriteRenderer>();
-        _costSprite.sprite = GraphicsManager.instance.costSprites[cost];
+        //_costSprite = transform.Find("Cost").GetComponent<SpriteRenderer>();
+        //_costSprite.sprite = GraphicsManager.instance.costSprites[cost];
     }
 
     protected virtual void Update()
     {
-        _costSprite.sortingOrder = _sprite.sortingOrder + 1;
-
+        //_costSprite.sortingOrder = _sprite.sortingOrder + 1;
+        
         if (inPlay)
             return;
 
@@ -89,7 +90,7 @@ public class Card : MonoBehaviour
     public virtual void ShowDescription()
     {
         UIManager.instance.SetActive("PanelCard", true);
-        UIManager.instance.ChangeText("PanelCard/TxtCost", cost.ToString());
+        UIManager.instance.ChangeText("PanelCard/TxtCost", "COST: " + cost + "AP");
         UIManager.instance.ChangeText("PanelCard/TxtDescription", description);
         UIManager.instance.ChangeImage("PanelCard/ImgCard", _sprite.sprite);
     }

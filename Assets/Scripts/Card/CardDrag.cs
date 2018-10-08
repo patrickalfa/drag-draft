@@ -67,10 +67,8 @@ public class CardDrag : Draggable
         _card = GetComponent<Card>();
     }
 
-    protected override void Update()
+    protected void Update()
     {
-        base.Update();
-
         if (dragging)
         {
             switch (targetType)

@@ -134,7 +134,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d597cd9d33be47a4687f23032b07c1a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
+  inPlay: 0
   cost: 0
+  description: 'CURSE:
+
+    (This card cannot be played).'
 --- !u!212 &212562795507798504
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -134,9 +134,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a7d60f256b39e4449072fa75aa1c324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
+  inPlay: 0
   cost: 1
-  frontFace: {fileID: 0}
-  backFace: {fileID: 0}
+  description: 'ATTACK:
+
+    Basic attack action.'
 --- !u!212 &212341529976812898
 SpriteRenderer:
   m_ObjectHideFlags: 1

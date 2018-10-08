@@ -38,6 +38,15 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         );
 
         dragging = true;
+
+        //-------------------------------------------------------------------------
+
+        _sprite.GetComponent<SpriteRenderer>().sortingOrder = raisedSortingOrder;
+        _shadow.sortingOrder = raisedSortingOrder - 2;
+
+        _sprite.DOComplete();
+        _sprite.DOBlendableScaleBy(Vector3.one * .1f, .1f);
+        _sprite.DOLocalMove((Vector3.up + Vector3.right) * .1f, .1f);
     }
 
     public virtual void OnDrag(PointerEventData eventData)
@@ -55,23 +64,8 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         _offsetToMouse = Vector3.zero;
 
         dragging = false;
-    }
 
-    public virtual void OnPointerDown(PointerEventData eventData)
-    {
-        Invoke("Hold");
-
-        _sprite.GetComponent<SpriteRenderer>().sortingOrder = raisedSortingOrder;
-        _shadow.sortingOrder = raisedSortingOrder - 2;
-
-        _sprite.DOComplete();
-        _sprite.DOBlendableScaleBy(Vector3.one * .1f, .1f);
-        _sprite.DOLocalMove((Vector3.up + Vector3.right) * .1f, .1f);
-    }
-
-    public virtual void OnPointerUp(PointerEventData eventData)
-    {
-        CancelInvoke("Hold");
+        //-------------------------------------------------------------------------
 
         _sprite.GetComponent<SpriteRenderer>().sortingOrder = _sortingOrder;
         _shadow.sortingOrder = _sortingOrder - 1;
@@ -79,6 +73,16 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         _sprite.DOComplete();
         _sprite.DOBlendableScaleBy(Vector3.one * -.1f, .1f);
         _sprite.DOLocalMove(Vector3.zero, .1f);
+    }
+
+    public virtual void OnPointerDown(PointerEventData eventData)
+    {
+        Invoke("Hold", .5f);
+    }
+
+    public virtual void OnPointerUp(PointerEventData eventData)
+    {
+        CancelInvoke("Hold");
     }
 
     #endregion
@@ -107,7 +111,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     ///////////////////////////////////////////////////////////////////////////////
 
-    protected override void Hold()
+    protected virtual void Hold()
     {
     }
 

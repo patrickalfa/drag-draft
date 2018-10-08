@@ -134,7 +134,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cea566ebbd7fa94896df62f35df2512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
+  inPlay: 0
   cost: 1
+  description: 'DEFENSE:
+
+    Shields a hero, nullifying the next damage it takes.'
 --- !u!212 &212369750254014454
 SpriteRenderer:
   m_ObjectHideFlags: 1
