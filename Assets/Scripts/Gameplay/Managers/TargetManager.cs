@@ -18,17 +18,6 @@ public class TargetManager : MonoBehaviour
 
     public Sprite[] sprites;
 
-    private static TargetManager m_instance;
-    public static TargetManager instance
-    {
-        get
-        {
-            if (m_instance == null)
-                m_instance = FindObjectOfType<TargetManager>();
-            return m_instance;
-        }
-    }
-
     private List<GameObject> _markers;
     private List<Vector2> _targetPositions;
     private List<TARGET_SHAPE> _shapesIDs;

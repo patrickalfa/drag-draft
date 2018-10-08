@@ -75,19 +75,19 @@ public class HeroMovement : Draggable
 
     protected virtual void DrawLine()
     {
-        LineManager.instance.size = .15f;
-        LineManager.instance.delta = .25f;
-        LineManager.instance.color = new Color(.55f, 1f, .9f, 1f);
-        LineManager.instance.sortingOrder = 8;
-        LineManager.instance.DrawDottedLine(_startPosition, _transform.position);
+        GraphicsManager.line.size = .15f;
+        GraphicsManager.line.delta = .25f;
+        GraphicsManager.line.color = new Color(.55f, 1f, .9f, 1f);
+        GraphicsManager.line.sortingOrder = 8;
+        GraphicsManager.line.DrawDottedLine(_startPosition, _transform.position);
     }
 
     protected virtual void HighlightHero()
     {
-        TargetManager.instance.size = 1.25f;
-        TargetManager.instance.color = new Color(.55f, 1f, .9f, .75f);
-        TargetManager.instance.sortingOrder = -1;
-        TargetManager.instance.DrawMarker(_startPosition);
+        GraphicsManager.target.size = 1.25f;
+        GraphicsManager.target.color = new Color(.55f, 1f, .9f, .75f);
+        GraphicsManager.target.sortingOrder = -1;
+        GraphicsManager.target.DrawMarker(_startPosition);
     }
 
     protected virtual void CheckValidMovement()

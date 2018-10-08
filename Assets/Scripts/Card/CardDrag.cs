@@ -115,11 +115,11 @@ public class CardDrag : Draggable
         {
             _targetObj = col.gameObject;
 
-            TargetManager.instance.size = 1.5f;
-            TargetManager.instance.color = new Color(1f, 1f, 1f, .5f);
-            TargetManager.instance.sortingOrder = -1;
-            TargetManager.instance.shape = TARGET_SHAPE.CIRCLE;
-            TargetManager.instance.DrawMarker(_targetObj.transform.position);
+            GraphicsManager.target.size = 1.5f;
+            GraphicsManager.target.color = new Color(1f, 1f, 1f, .5f);
+            GraphicsManager.target.sortingOrder = -1;
+            GraphicsManager.target.shape = TARGET_SHAPE.CIRCLE;
+            GraphicsManager.target.DrawMarker(_targetObj.transform.position);
         }
         else
             _targetObj = null;
@@ -133,10 +133,10 @@ public class CardDrag : Draggable
         {
             _targetObj = col.gameObject;
 
-            TargetManager.instance.size = 1.5f;
-            TargetManager.instance.color = new Color(1f, 1f, 1f, .5f);
-            TargetManager.instance.sortingOrder = -1;
-            TargetManager.instance.DrawMarker(_targetObj.transform.position);
+            GraphicsManager.target.size = 1.5f;
+            GraphicsManager.target.color = new Color(1f, 1f, 1f, .5f);
+            GraphicsManager.target.sortingOrder = -1;
+            GraphicsManager.target.DrawMarker(_targetObj.transform.position);
         }
         else
             _targetObj = null;
@@ -148,11 +148,11 @@ public class CardDrag : Draggable
         {
             _targetPos = _transform.position;
 
-            TargetManager.instance.size = 1.5f;
-            TargetManager.instance.color = new Color(1f, 1f, 1f, .5f);
-            TargetManager.instance.sortingOrder = 1;
-            TargetManager.instance.shape = TARGET_SHAPE.CIRCLE;
-            TargetManager.instance.DrawMarker(_transform.position);
+            GraphicsManager.target.size = 1.5f;
+            GraphicsManager.target.color = new Color(1f, 1f, 1f, .5f);
+            GraphicsManager.target.sortingOrder = 1;
+            GraphicsManager.target.shape = TARGET_SHAPE.CIRCLE;
+            GraphicsManager.target.DrawMarker(_transform.position);
         }
     }
 
@@ -162,11 +162,11 @@ public class CardDrag : Draggable
 
         if (col)
         {
-            TargetManager.instance.size = 1.5f;
-            TargetManager.instance.color = new Color(1f, 0f, 0f, .5f);
-            TargetManager.instance.sortingOrder = 11;
-            TargetManager.instance.shape = TARGET_SHAPE.CIRCLE;
-            TargetManager.instance.DrawMarker(col.transform.position);
+            GraphicsManager.target.size = 1.5f;
+            GraphicsManager.target.color = new Color(1f, 0f, 0f, .5f);
+            GraphicsManager.target.sortingOrder = 11;
+            GraphicsManager.target.shape = TARGET_SHAPE.CIRCLE;
+            GraphicsManager.target.DrawMarker(col.transform.position);
         }
     }
 

@@ -16,17 +16,6 @@ public class LineManager : MonoBehaviour
     public float outlineWidth;
     public Color outlineColor;
 
-    private static LineManager m_instance;
-    public static LineManager instance
-    {
-        get
-        {
-            if (m_instance == null)
-                m_instance = FindObjectOfType<LineManager>();
-            return m_instance;
-        }
-    }
-
     private List<Vector2> _positions = new List<Vector2>();
     private List<GameObject> _dots = new List<GameObject>();
 

@@ -52,16 +52,16 @@ public class MageFireball : Targetable
 
     protected void HighlightHero()
     {
-        TargetManager.instance.size = 1.25f;
-        TargetManager.instance.color = new Color(lineColor.r, lineColor.g, lineColor.b, .75f);
-        TargetManager.instance.sortingOrder = -1;
-        TargetManager.instance.DrawMarker(_transform.position);
+        GraphicsManager.target.size = 1.25f;
+        GraphicsManager.target.color = new Color(lineColor.r, lineColor.g, lineColor.b, .75f);
+        GraphicsManager.target.sortingOrder = -1;
+        GraphicsManager.target.DrawMarker(_transform.position);
     }
 
     protected void Explode()
     {
         GameObject ball = new GameObject("Fireball");
-        ball.AddComponent<SpriteRenderer>().sprite = TargetManager.instance.sprites[(int)TARGET_SHAPE.CIRCLE]; // DEBUG
+        ball.AddComponent<SpriteRenderer>().sprite = GraphicsManager.target.sprites[(int)TARGET_SHAPE.CIRCLE]; // DEBUG
         ball.GetComponent<SpriteRenderer>().sortingOrder = raisedSortingOrder;
         ball.GetComponent<SpriteRenderer>().color = new Color(1f, 0f, 0f, .75f); // DEBUG
         ball.transform.position = _targetPos;

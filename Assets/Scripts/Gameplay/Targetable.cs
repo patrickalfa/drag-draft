@@ -178,17 +178,17 @@ public class Targetable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     protected virtual void DrawLine()
     {
-        LineManager.instance.size = .15f;
-        LineManager.instance.delta = .25f;
-        LineManager.instance.color = lineColor;
-        LineManager.instance.sortingOrder = raisedSortingOrder;
-        LineManager.instance.DrawDottedLine(_transform.position, _targetPos);
+        GraphicsManager.line.size = .15f;
+        GraphicsManager.line.delta = .25f;
+        GraphicsManager.line.color = lineColor;
+        GraphicsManager.line.sortingOrder = raisedSortingOrder;
+        GraphicsManager.line.DrawDottedLine(_transform.position, _targetPos);
 
-        TargetManager.instance.size = .25f;
-        TargetManager.instance.color = lineColor;
-        TargetManager.instance.sortingOrder = raisedSortingOrder;
-        TargetManager.instance.shape = TARGET_SHAPE.CIRCLE;
-        TargetManager.instance.DrawMarker(_targetPos);
+        GraphicsManager.target.size = .25f;
+        GraphicsManager.target.color = lineColor;
+        GraphicsManager.target.sortingOrder = raisedSortingOrder;
+        GraphicsManager.target.shape = TARGET_SHAPE.CIRCLE;
+        GraphicsManager.target.DrawMarker(_targetPos);
     }
 
     protected virtual void Action()
@@ -209,11 +209,11 @@ public class Targetable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         {
             _targetObj = col.gameObject;
 
-            TargetManager.instance.size = 1.25f;
-            TargetManager.instance.sortingOrder = -1;
-            TargetManager.instance.shape = TARGET_SHAPE.CIRCLE;
-            TargetManager.instance.color = new Color(lineColor.r, lineColor.g, lineColor.b, .5f);
-            TargetManager.instance.DrawMarker(_targetObj.transform.position);
+            GraphicsManager.target.size = 1.25f;
+            GraphicsManager.target.sortingOrder = -1;
+            GraphicsManager.target.shape = TARGET_SHAPE.CIRCLE;
+            GraphicsManager.target.color = new Color(lineColor.r, lineColor.g, lineColor.b, .5f);
+            GraphicsManager.target.DrawMarker(_targetObj.transform.position);
         }
         else
             _targetObj = null;
@@ -227,11 +227,11 @@ public class Targetable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         {
             _targetObj = col.gameObject;
 
-            TargetManager.instance.size = 1.25f;
-            TargetManager.instance.sortingOrder = -1;
-            TargetManager.instance.shape = TARGET_SHAPE.CIRCLE;
-            TargetManager.instance.color = new Color(lineColor.r, lineColor.g, lineColor.b, .5f);
-            TargetManager.instance.DrawMarker(_targetObj.transform.position);
+            GraphicsManager.target.size = 1.25f;
+            GraphicsManager.target.sortingOrder = -1;
+            GraphicsManager.target.shape = TARGET_SHAPE.CIRCLE;
+            GraphicsManager.target.color = new Color(lineColor.r, lineColor.g, lineColor.b, .5f);
+            GraphicsManager.target.DrawMarker(_targetObj.transform.position);
         }
         else
             _targetObj = null;
@@ -241,20 +241,20 @@ public class Targetable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     {
         _targetPos = _transform.position;
 
-        TargetManager.instance.size = 1.5f;
-        TargetManager.instance.color = new Color(lineColor.r, lineColor.g, lineColor.b, .5f);
-        TargetManager.instance.sortingOrder = 1;
-        TargetManager.instance.shape = TARGET_SHAPE.CIRCLE;
-        TargetManager.instance.DrawMarker(_transform.position);
+        GraphicsManager.target.size = 1.5f;
+        GraphicsManager.target.color = new Color(lineColor.r, lineColor.g, lineColor.b, .5f);
+        GraphicsManager.target.sortingOrder = 1;
+        GraphicsManager.target.shape = TARGET_SHAPE.CIRCLE;
+        GraphicsManager.target.DrawMarker(_transform.position);
     }
 
     private void CheckTargetAreaHero()
     {
-        TargetManager.instance.size = size;
-        TargetManager.instance.sortingOrder = -1;
-        TargetManager.instance.shape = TARGET_SHAPE.CIRCLE;
-        TargetManager.instance.color = new Color(lineColor.r, lineColor.g, lineColor.b, .5f);
-        TargetManager.instance.DrawMarker(_targetPos);
+        GraphicsManager.target.size = size;
+        GraphicsManager.target.sortingOrder = -1;
+        GraphicsManager.target.shape = TARGET_SHAPE.CIRCLE;
+        GraphicsManager.target.color = new Color(lineColor.r, lineColor.g, lineColor.b, .5f);
+        GraphicsManager.target.DrawMarker(_targetPos);
 
         Collider2D[] cols = Physics2D.OverlapCircleAll(_targetPos, size * .5f, LayerMask.GetMask("Hero"));
 
@@ -265,8 +265,8 @@ public class Targetable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
             for (int i = 0; i < length; i++)
             {
                 _targetMultiple[i] = cols[i].gameObject;
-                TargetManager.instance.size = 1.25f;
-                TargetManager.instance.DrawMarker(_targetMultiple[i].transform.position);
+                GraphicsManager.target.size = 1.25f;
+                GraphicsManager.target.DrawMarker(_targetMultiple[i].transform.position);
             }
         }
         else
@@ -275,11 +275,11 @@ public class Targetable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     private void CheckTargetAreaEnemy()
     {
-        TargetManager.instance.size = size;
-        TargetManager.instance.sortingOrder = -1;
-        TargetManager.instance.shape = TARGET_SHAPE.CIRCLE;
-        TargetManager.instance.color = new Color(lineColor.r, lineColor.g, lineColor.b, .5f);
-        TargetManager.instance.DrawMarker(_targetPos);
+        GraphicsManager.target.size = size;
+        GraphicsManager.target.sortingOrder = -1;
+        GraphicsManager.target.shape = TARGET_SHAPE.CIRCLE;
+        GraphicsManager.target.color = new Color(lineColor.r, lineColor.g, lineColor.b, .5f);
+        GraphicsManager.target.DrawMarker(_targetPos);
 
         Collider2D[] cols = Physics2D.OverlapCircleAll(_targetPos, size * .5f, LayerMask.GetMask("Enemy"));
 
@@ -290,8 +290,8 @@ public class Targetable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
             for (int i = 0; i < length; i++)
             {
                 _targetMultiple[i] = cols[i].gameObject;
-                TargetManager.instance.size = 1.25f;
-                TargetManager.instance.DrawMarker(_targetMultiple[i].transform.position);
+                GraphicsManager.target.size = 1.25f;
+                GraphicsManager.target.DrawMarker(_targetMultiple[i].transform.position);
             }
         }
         else

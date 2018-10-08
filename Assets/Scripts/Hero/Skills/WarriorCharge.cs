@@ -30,19 +30,19 @@ public class WarriorCharge : HeroMovement
 
     protected override void DrawLine()
     {
-        LineManager.instance.size = .15f;
-        LineManager.instance.delta = .25f;
-        LineManager.instance.color = new Color(1f, .64f, .25f, 1f);
-        LineManager.instance.sortingOrder = 8;
-        LineManager.instance.DrawDottedLine(_startPosition, _transform.position);
+        GraphicsManager.line.size = .15f;
+        GraphicsManager.line.delta = .25f;
+        GraphicsManager.line.color = new Color(1f, .64f, .25f, 1f);
+        GraphicsManager.line.sortingOrder = 8;
+        GraphicsManager.line.DrawDottedLine(_startPosition, _transform.position);
     }
 
     protected override void HighlightHero()
     {
-        TargetManager.instance.size = 1.25f;
-        TargetManager.instance.color = new Color(1f, .64f, .25f, .75f);
-        TargetManager.instance.sortingOrder = -1;
-        TargetManager.instance.DrawMarker(_startPosition);
+        GraphicsManager.target.size = 1.25f;
+        GraphicsManager.target.color = new Color(1f, .64f, .25f, .75f);
+        GraphicsManager.target.sortingOrder = -1;
+        GraphicsManager.target.DrawMarker(_startPosition);
     }
 
     private void CheckTarget(Collider2D col)
@@ -51,21 +51,21 @@ public class WarriorCharge : HeroMovement
         {
             _target = col.transform;
 
-            TargetManager.instance.size = 1.25f;
-            TargetManager.instance.sortingOrder = -1;
-            TargetManager.instance.shape = TARGET_SHAPE.CIRCLE;
-            TargetManager.instance.color = new Color(1f, .64f, .25f, .5f);
-            TargetManager.instance.DrawMarker(_target.transform.position);
+            GraphicsManager.target.size = 1.25f;
+            GraphicsManager.target.sortingOrder = -1;
+            GraphicsManager.target.shape = TARGET_SHAPE.CIRCLE;
+            GraphicsManager.target.color = new Color(1f, .64f, .25f, .5f);
+            GraphicsManager.target.DrawMarker(_target.transform.position);
 
             Vector3 direction = (_target.position - _startPosition).normalized;
             _knockedPos = _target.position + (direction * 1.5f);
 
-            LineManager.instance.size = .15f;
-            LineManager.instance.delta = .25f;
-            LineManager.instance.color = new Color(1f, .64f, .25f, .5f);
-            LineManager.instance.sortingOrder = 8;
-            LineManager.instance.DrawDottedLine(_target.position, _knockedPos);
-            TargetManager.instance.DrawMarker(_knockedPos);
+            GraphicsManager.line.size = .15f;
+            GraphicsManager.line.delta = .25f;
+            GraphicsManager.line.color = new Color(1f, .64f, .25f, .5f);
+            GraphicsManager.line.sortingOrder = 8;
+            GraphicsManager.line.DrawDottedLine(_target.position, _knockedPos);
+            GraphicsManager.target.DrawMarker(_knockedPos);
         }
         else
             _target = null;

@@ -46,9 +46,9 @@ public class HeroAttack : Targetable
 
     protected void HighlightHero()
     {
-        TargetManager.instance.size = 1.25f;
-        TargetManager.instance.color = new Color(.25f, .55f, 1f, .75f);
-        TargetManager.instance.sortingOrder = -1;
-        TargetManager.instance.DrawMarker(_transform.position);
+        GraphicsManager.target.size = 1.25f;
+        GraphicsManager.target.color = new Color(.25f, .55f, 1f, .75f);
+        GraphicsManager.target.sortingOrder = -1;
+        GraphicsManager.target.DrawMarker(_transform.position);
     }
 }
