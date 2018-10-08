@@ -30,6 +30,11 @@ public class UIManager : MonoBehaviour
         _transform.Find(name).GetComponent<Text>().text = text;
     }
 
+    public void ChangeImage(string name, Sprite sprite)
+    {
+        _transform.Find(name).GetComponent<Image>().sprite = sprite;
+    }
+
     public void SetActive(string name, bool state)
     {
         _transform.Find(name).gameObject.SetActive(state);

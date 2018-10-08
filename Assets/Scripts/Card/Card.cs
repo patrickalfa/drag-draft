@@ -15,6 +15,11 @@ public class Card : MonoBehaviour
     /// </summary>
     public int cost;
 
+    /// <summary>
+    /// The description of the card action
+    /// </summary>
+    public string description;
+
     ///////////////////////////////////////////////////////////////////////////////
 
     protected virtual void Start()
@@ -74,5 +79,13 @@ public class Card : MonoBehaviour
         GameManager.instance.playedCard = null;
         GameManager.instance.deck.hand.Add(this);
         GameManager.instance.deck.RearrangeHand();
+    }
+
+    public virtual void ShowDescription()
+    {
+        UIManager.instance.SetActive("PanelCard", true);
+        UIManager.instance.ChangeText("PanelCard/TxtCost", cost.ToString());
+        UIManager.instance.ChangeText("PanelCard/TxtDescription", description);
+        UIManager.instance.ChangeImage("PanelCard/ImgCard", _sprite.sprite);
     }
 }

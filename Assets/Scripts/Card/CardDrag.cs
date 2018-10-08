@@ -98,6 +98,11 @@ public class CardDrag : Draggable
         _transform.DOMove(Vector3.up * -3.75f, .25f);
     }
 
+    protected override void Hold()
+    {
+        _card.ShowDescription();
+    }
+
     // CHECKS //////////////////////////////
 
     private void CheckTargetHero()

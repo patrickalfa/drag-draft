@@ -28,6 +28,8 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public virtual void OnBeginDrag(PointerEventData eventData)
     {
+        CancelInvoke("Hold");
+
         _startPosition = _transform.position;
         _zDistanceToCamera = Mathf.Abs(_startPosition.z - Camera.main.transform.position.z);
 
@@ -57,6 +59,8 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public virtual void OnPointerDown(PointerEventData eventData)
     {
+        Invoke("Hold");
+
         _sprite.GetComponent<SpriteRenderer>().sortingOrder = raisedSortingOrder;
         _shadow.sortingOrder = raisedSortingOrder - 2;
 
@@ -67,6 +71,8 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public virtual void OnPointerUp(PointerEventData eventData)
     {
+        CancelInvoke("Hold");
+
         _sprite.GetComponent<SpriteRenderer>().sortingOrder = _sortingOrder;
         _shadow.sortingOrder = _sortingOrder - 1;
 
@@ -89,14 +95,6 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         _shadow.Setup(_sprite, _sortingOrder - 1);
     }
 
-    protected virtual void Update()
-    {
-    }
-
-    protected virtual void OnDestroy()
-    {
-    }
-
     protected virtual void OnEnable()
     {
         _startPosition = transform.position;
@@ -108,6 +106,10 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     }
 
     ///////////////////////////////////////////////////////////////////////////////
+
+    protected override void Hold()
+    {
+    }
 
     protected virtual void DragTo(Vector3 newPos)
     {

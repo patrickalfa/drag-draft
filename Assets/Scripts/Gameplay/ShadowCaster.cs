@@ -46,7 +46,10 @@ public class ShadowCaster : MonoBehaviour
 
     private void CreateShadow()
     {
-        _shadow = Instantiate(_sprite, _sprite.position, Quaternion.identity, _transform);
+        _shadow = new GameObject().transform;
+        _shadow.parent = _transform;
+        _shadow.position = _sprite.position;
+        _shadow.AddComponent<SpriteRenderer>().sprite = _sprite.GetComponent<SpriteRenderer>().sprite;
         _shadow.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, .5f);
         _shadow.GetComponent<SpriteRenderer>().sortingOrder = _sortingOrder - 1;
         _shadow.name = "Shadow";
