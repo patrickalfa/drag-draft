@@ -29,7 +29,6 @@ public class TargetManager : MonoBehaviour
         }
     }
 
-    private Transform _transform;
     private List<GameObject> _markers;
     private List<Vector2> _targetPositions;
     private List<TARGET_SHAPE> _shapesIDs;
