@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 using DG.Tweening;
 
 [RequireComponent(typeof(ShadowCaster))]
-public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler
+public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [Tooltip("Sorting order while raised when dragging.")]
     /// <summary>
@@ -28,8 +28,6 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public virtual void OnBeginDrag(PointerEventData eventData)
     {
-        CancelInvoke("Hold");
-
         _startPosition = _transform.position;
         _zDistanceToCamera = Mathf.Abs(_startPosition.z - Camera.main.transform.position.z);
 
@@ -75,16 +73,6 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         _sprite.DOLocalMove(Vector3.zero, .1f);
     }
 
-    public virtual void OnPointerDown(PointerEventData eventData)
-    {
-        Invoke("Hold", .5f);
-    }
-
-    public virtual void OnPointerUp(PointerEventData eventData)
-    {
-        CancelInvoke("Hold");
-    }
-
     #endregion
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -110,10 +98,6 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     }
 
     ///////////////////////////////////////////////////////////////////////////////
-
-    protected virtual void Hold()
-    {
-    }
 
     protected virtual void DragTo(Vector3 newPos)
     {

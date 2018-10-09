@@ -89,12 +89,4 @@ public class Card : MonoBehaviour
         GameManager.instance.deck.hand.Add(this);
         GameManager.instance.deck.RearrangeHand();
     }
-
-    public virtual void ShowDescription()
-    {
-        UIManager.instance.SetActive("PanelCard", true);
-        UIManager.instance.ChangeText("PanelCard/TxtCost", "COST: " + cost + "AP");
-        UIManager.instance.ChangeText("PanelCard/TxtDescription", description);
-        UIManager.instance.ChangeImage("PanelCard/ImgCard", _sprite.sprite);
-    }
 }
