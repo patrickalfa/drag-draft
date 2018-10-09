@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum GAME_STATE
 {
@@ -80,7 +81,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        OnStateUpdate();
         if (_lateState != currentState)
             OnStateChange();
 
@@ -99,6 +99,7 @@ public class GameManager : MonoBehaviour
             case GAME_STATE.PLANNING:
                 deck.UnlockHand();
                 DiscardPlayedCard();
+                CheckGameEnded();
                 UIManager.instance.SetActive("BtnCancel", false);
                 break;
             case GAME_STATE.ACTING:
@@ -111,21 +112,6 @@ public class GameManager : MonoBehaviour
         }
 
         _lateState = currentState;
-    }
-
-    private void OnStateUpdate()
-    {
-        switch (currentState)
-        {
-            case GAME_STATE.DRAWING:
-                break;
-            case GAME_STATE.PLANNING:
-                break;
-            case GAME_STATE.ACTING:
-                break;
-            case GAME_STATE.SPECTATING:
-                break;
-        }
     }
 
     public void SpotlightHero(Hero hero, bool state)
@@ -153,24 +139,6 @@ public class GameManager : MonoBehaviour
         currentState = GAME_STATE.SPECTATING;
     }
 
-    private IEnumerator WaitForEnemies()
-    {
-        foreach (Enemy e in enemies)
-        {
-            if (e.gameObject.activeSelf)
-            {
-                e.Act();
-
-                while (e.acting)
-                    yield return null;
-            }
-        }
-
-        deck.DrawHand();
-        ap = maxAP;
-        currentState = GAME_STATE.PLANNING;
-    }
-
     public void CancelPlayedCard()
     {
         if (playedCard)
@@ -188,5 +156,55 @@ public class GameManager : MonoBehaviour
             deck.Discard(playedCard);
             playedCard = null;
         }
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("Main"); // DEBUG
+    }
+
+    private void CheckGameEnded()
+    {
+        bool enemyAlive = false;
+        bool heroAlive = false;
+
+        foreach (Enemy e in enemies)
+        {
+            if (e.gameObject.activeSelf)
+            {
+                enemyAlive = true;
+                break;
+            }
+        }
+
+        foreach (Hero h in heroes)
+        {
+            if (h.gameObject.activeSelf)
+            {
+                heroAlive = true;
+                break;
+            }
+        }
+
+        if (!enemyAlive || !heroAlive)
+            UIManager.instance.SetActive("PnlRestart", true);
+    }
+
+    private IEnumerator WaitForEnemies()
+    {
+        foreach (Enemy e in enemies)
+        {
+            if (e.gameObject.activeSelf)
+            {
+                e.Act();
+
+                while (e.acting)
+                    yield return null;
+            }
+        }
+
+        deck.DrawHand();
+        ap = maxAP;
+        currentState = GAME_STATE.PLANNING;
     }
 }

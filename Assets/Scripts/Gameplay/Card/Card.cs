@@ -7,7 +7,6 @@ public class Card : MonoBehaviour
     public bool active;
     public bool inPlay;
     protected SpriteRenderer _sprite;
-    protected SpriteRenderer _costSprite;
 
     ///////////////////////////////////////////////////////////////////////////////
 
@@ -27,17 +26,10 @@ public class Card : MonoBehaviour
     protected virtual void Start()
     {
         _sprite = transform.Find("Sprite").GetComponent<SpriteRenderer>();
-
-        int costID = (cost >= 0 ? cost : GraphicsManager.instance.costSprites.Length - 1);
-
-        _costSprite = _sprite.transform.Find("Cost").GetComponent<SpriteRenderer>();
-        _costSprite.sprite = GraphicsManager.instance.costSprites[costID];
     }
 
     protected virtual void Update()
     {
-        _costSprite.sortingOrder = _sprite.sortingOrder + 1;
-        
         if (inPlay)
             return;
 

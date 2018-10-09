@@ -14,9 +14,9 @@ public class TooltipCharacter : Tooltip
         description += "Damage: " + character.damage + "\n";
         description += "Range: " + character.range;
         
-        UIManager.instance.SetActive("Panel", true);
-        UIManager.instance.ChangeText("Panel/TxtHeader", character.name);
-        UIManager.instance.ChangeText("Panel/TxtDescription", description);
-        UIManager.instance.ChangeImage("Panel/ImgIcon", sprite);
+        UIManager.instance.SetActive("PnlTooltip", true);
+        UIManager.instance.ChangeText("PnlTooltip/TxtHeader", character.name);
+        UIManager.instance.ChangeText("PnlTooltip/TxtDescription", description);
+        UIManager.instance.ChangeImage("PnlTooltip/ImgIcon", sprite);
     }
 }
