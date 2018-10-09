@@ -10,7 +10,7 @@ public class Card_Mage_Freeze : Card
     {
         base.Start();
 
-        cost = 0;
+        cost = 1;
 
         GetComponent<CardDrag>().targetType = TARGET_TYPE.HERO;
         GetComponent<CardDrag>().ownerType = HERO_TYPE.MAGE;
