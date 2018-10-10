@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114505186327790682}
   - component: {fileID: 114197351123310736}
   - component: {fileID: 61072795918492080}
+  - component: {fileID: 114792463787469706}
   m_Layer: 0
   m_Name: Card_Curse
   m_TagString: Untagged
@@ -39,6 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4653172259125202}
   - component: {fileID: 212994241636626652}
+  - component: {fileID: 114365957547615746}
   m_Layer: 0
   m_Name: Cost
   m_TagString: Untagged
@@ -142,6 +144,18 @@ MonoBehaviour:
   raisedSortingOrder: 19
   targetType: 5
   ownerType: 0
+--- !u!114 &114365957547615746
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1787251108800476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 822e6657b586bea4894a590c8dc6a699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _card: {fileID: 114669605329036822}
 --- !u!114 &114505186327790682
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -170,6 +184,17 @@ MonoBehaviour:
   description: 'CURSE:
 
     (This card cannot be played).'
+--- !u!114 &114792463787469706
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1610027889408962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d066ca2a1cb79fa47a48a879fad85e03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212562795507798504
 SpriteRenderer:
   m_ObjectHideFlags: 1

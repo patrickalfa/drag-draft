@@ -70,6 +70,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1f;
+
         _lateState = GAME_STATE.DRAWING;
         currentState = GAME_STATE.DRAWING;
 
@@ -99,7 +101,7 @@ public class GameManager : MonoBehaviour
             case GAME_STATE.PLANNING:
                 deck.UnlockHand();
                 DiscardPlayedCard();
-                CheckGameEnded();
+                Invoke("CheckGameEnded", .5f);
                 UIManager.instance.SetActive("BtnCancel", false);
                 break;
             case GAME_STATE.ACTING:
@@ -163,6 +165,12 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Main"); // DEBUG
     }
 
+    public void EndGame()
+    {
+        Time.timeScale = 0f;
+        UIManager.instance.SetActive("PnlRestart", true);
+    }
+
     private void CheckGameEnded()
     {
         bool enemyAlive = false;
@@ -170,7 +178,7 @@ public class GameManager : MonoBehaviour
 
         foreach (Enemy e in enemies)
         {
-            if (e.gameObject.activeSelf)
+            if (e.hp > 0)
             {
                 enemyAlive = true;
                 break;
@@ -179,7 +187,7 @@ public class GameManager : MonoBehaviour
 
         foreach (Hero h in heroes)
         {
-            if (h.gameObject.activeSelf)
+            if (h.hp > 0)
             {
                 heroAlive = true;
                 break;
@@ -187,7 +195,7 @@ public class GameManager : MonoBehaviour
         }
 
         if (!enemyAlive || !heroAlive)
-            UIManager.instance.SetActive("PnlRestart", true);
+            EndGame();
     }
 
     private IEnumerator WaitForEnemies()

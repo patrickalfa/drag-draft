@@ -1,25 +1,21 @@
 fileFormatVersion: 2
-guid: e1fad7e2e174f5a408b783b13d165201
+guid: aaab70b2f07866145898621c5e8ff3e7
 TextureImporter:
   fileIDToRecycleName:
-    21300000: card_attack
-    21300002: card_movement
-    21300004: card_defense
-    21300006: card_ap
-    21300008: card_curse
-    21300010: card_warrior_charge
-    21300012: card_archer_doubleshot
-    21300014: card_mage_fireball
-    21300016: card_mage_freeze
+    21300000: mage
+    21300002: warrior
+    21300004: archer
+    21300006: orc
+    21300008: goblin
   externalObjects: {}
   serializedVersion: 6
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
-    borderMipMap: 1
+    borderMipMap: 0
     mipMapsPreserveCoverage: 0
     alphaTestReferenceValue: 0.5
     mipMapFadeDistanceStart: 1
@@ -54,7 +50,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 112
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
@@ -115,181 +111,101 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: card_attack
+      name: mage
       rect:
         serializedVersion: 2
         x: 0
-        y: 100
-        width: 65
-        height: 100
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 256
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.52, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 525dfbb3eca411246b1b5432fe69b724
+      spriteID: 26ce2e42124981c49a684b54bb64a3f0
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: card_movement
+      name: warrior
       rect:
         serializedVersion: 2
-        x: 65
-        y: 100
-        width: 65
-        height: 100
+        x: 128
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b9bd33d4390f39c4a894dd6ad61dbd11
+      spriteID: d3e33f69589fbad458deb0f0730ebfeb
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: card_defense
+      name: archer
       rect:
         serializedVersion: 2
-        x: 130
-        y: 100
-        width: 65
-        height: 100
+        x: 0
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 578935ddbc382bd45a3cb5caa95c3320
+      spriteID: 6a550b2d3494cf24bac8475723ae2adb
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: card_ap
+      name: orc
       rect:
         serializedVersion: 2
-        x: 195
-        y: 100
-        width: 65
-        height: 100
+        x: 128
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f5ee4a1cbc5844468d07b29ab8f048f
+      spriteID: 667d15cda4b708e45930c63b74d32df2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: card_curse
-      rect:
-        serializedVersion: 2
-        x: 260
-        y: 100
-        width: 65
-        height: 100
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9825f482f422c6c448793ae79a2422a5
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: card_warrior_charge
+      name: goblin
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 65
-        height: 100
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c1b08501dc227c478e3a57c50145b6e
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: card_archer_doubleshot
-      rect:
-        serializedVersion: 2
-        x: 65
-        y: 0
-        width: 65
-        height: 100
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f3f4d88599d985048a9369d519f14a0f
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: card_mage_fireball
-      rect:
-        serializedVersion: 2
-        x: 130
-        y: 0
-        width: 65
-        height: 100
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6030e32e8cff92441829c002f87bd8ba
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: card_mage_freeze
-      rect:
-        serializedVersion: 2
-        x: 195
-        y: 0
-        width: 65
-        height: 100
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cf73ef79e97b8a740b0dfb2c2be39d34
+      spriteID: f9fc80d97bba8f4419e710412ecd559f
       vertices: []
       indices: 
       edges: []
@@ -297,7 +213,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: c6166867ccf254840880e47e900dca31
+    spriteID: d7e25418f7253554ea67c61aa24815cc
     vertices: []
     indices: 
     edges: []

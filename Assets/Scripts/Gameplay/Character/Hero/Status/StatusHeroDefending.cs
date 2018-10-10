@@ -36,10 +36,12 @@ public class StatusHeroDefending : MonoBehaviour
 
     private void CreateOutline()
     {
-        _outline = Instantiate(_heroSprt.transform, _heroSprt.transform.position, Quaternion.identity, _heroSprt.transform);
+        _outline = new GameObject("Outline").transform;
+        _outline.gameObject.AddComponent<SpriteRenderer>().sprite = GraphicsManager.target.sprites[(int)TARGET_SHAPE.DIAMOND]; // DEBUG
+        _outline.position = _heroSprt.transform.position;
+        _outline.parent = _heroSprt.transform;
         _outline.GetComponent<SpriteRenderer>().color = new Color(.6f, 1f, .55f);
         _outline.GetComponent<SpriteRenderer>().sortingOrder = _heroSprt.sortingOrder - 1;
         _outline.localScale = Vector3.one * 1.25f;
-        _outline.name = "Outline";
     }
 }

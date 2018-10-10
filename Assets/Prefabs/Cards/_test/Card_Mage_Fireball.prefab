@@ -36,6 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4170938526276324}
   - component: {fileID: 212246411744989440}
+  - component: {fileID: 114559721870862444}
   m_Layer: 0
   m_Name: Cost
   m_TagString: Untagged
@@ -55,6 +56,7 @@ GameObject:
   - component: {fileID: 114534109381037346}
   - component: {fileID: 114263042483027104}
   - component: {fileID: 61474403801030872}
+  - component: {fileID: 114233509503420974}
   m_Layer: 0
   m_Name: Card_Mage_Fireball
   m_TagString: Untagged
@@ -128,6 +130,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.65, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &114233509503420974
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1766083365129074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d066ca2a1cb79fa47a48a879fad85e03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114263042483027104
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -172,6 +185,18 @@ MonoBehaviour:
     Damages all enemies enemies on an area.
 
     (Range = 2, Radius = 2).'
+--- !u!114 &114559721870862444
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1342627790389464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 822e6657b586bea4894a590c8dc6a699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _card: {fileID: 114536417081787254}
 --- !u!212 &212246411744989440
 SpriteRenderer:
   m_ObjectHideFlags: 1

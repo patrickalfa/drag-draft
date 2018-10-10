@@ -5,7 +5,9 @@ using UnityEngine;
 public enum TARGET_SHAPE
 {
     CIRCLE,
-    TRIANGLE
+    TRIANGLE,
+    DIAMOND,
+    SQUARE
 }
 
 public class TargetManager : MonoBehaviour

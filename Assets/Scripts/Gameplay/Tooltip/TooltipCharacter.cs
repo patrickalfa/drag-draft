@@ -6,7 +6,7 @@ public class TooltipCharacter : Tooltip
     protected override void Hold()
     {
         Character character = GetComponent<Character>();
-        Sprite sprite = character.transform.Find("Sprite").GetComponent<SpriteRenderer>().sprite;
+        Sprite sprite = transform.Find("Sprite").GetComponent<SpriteRenderer>().sprite;
         string description = "";
 
         description += "HP: " + character.hp + "/" + character.maxHP + "\n";

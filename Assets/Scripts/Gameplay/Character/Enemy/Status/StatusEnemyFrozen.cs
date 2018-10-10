@@ -42,10 +42,12 @@ public class StatusEnemyFrozen : MonoBehaviour
 
     private void CreateOverlay()
     {
-        _overlay = Instantiate(_enemySprt.transform, _enemySprt.transform.position, Quaternion.identity, _enemySprt.transform);
+        _overlay = new GameObject("Overlay").transform;
+        _overlay.gameObject.AddComponent<SpriteRenderer>().sprite = GraphicsManager.target.sprites[(int)TARGET_SHAPE.DIAMOND]; // DEBUG
+        _overlay.position = _enemySprt.transform.position;
+        _overlay.parent = _enemySprt.transform;
         _overlay.GetComponent<SpriteRenderer>().color = new Color(.3f, .38f, 72f, .75f);
         _overlay.GetComponent<SpriteRenderer>().sortingOrder = _enemySprt.sortingOrder + 1;
         _overlay.localScale = Vector3.one * 1.25f;
-        _overlay.name = "Overlay";
     }
 }

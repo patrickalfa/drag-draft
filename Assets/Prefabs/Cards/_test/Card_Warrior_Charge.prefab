@@ -36,6 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4329497291887528}
   - component: {fileID: 212861964269535590}
+  - component: {fileID: 114170242127460312}
   m_Layer: 0
   m_Name: Cost
   m_TagString: Untagged
@@ -55,6 +56,7 @@ GameObject:
   - component: {fileID: 114534109381037346}
   - component: {fileID: 114263042483027104}
   - component: {fileID: 61474403801030872}
+  - component: {fileID: 114926300314874796}
   m_Layer: 0
   m_Name: Card_Warrior_Charge
   m_TagString: Untagged
@@ -128,6 +130,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.65, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &114170242127460312
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1411321255233688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 822e6657b586bea4894a590c8dc6a699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _card: {fileID: 114536417081787254}
 --- !u!114 &114263042483027104
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -171,6 +185,17 @@ MonoBehaviour:
 
     Moves to a location, dealing damage to an eventual enemy there and pushing it
     away.'
+--- !u!114 &114926300314874796
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1766083365129074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d066ca2a1cb79fa47a48a879fad85e03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212369750254014454
 SpriteRenderer:
   m_ObjectHideFlags: 1

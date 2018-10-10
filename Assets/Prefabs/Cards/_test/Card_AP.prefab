@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 114534109381037346}
   - component: {fileID: 114263042483027104}
   - component: {fileID: 61474403801030872}
+  - component: {fileID: 114319748296076402}
   m_Layer: 0
   m_Name: Card_AP
   m_TagString: Untagged
@@ -55,6 +56,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4315702136151682}
   - component: {fileID: 212890514916735654}
+  - component: {fileID: 114040393184033118}
   m_Layer: 0
   m_Name: Cost
   m_TagString: Untagged
@@ -128,6 +130,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.65, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &114040393184033118
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1796088071638288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 822e6657b586bea4894a590c8dc6a699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _card: {fileID: 114536417081787254}
 --- !u!114 &114263042483027104
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -142,6 +156,17 @@ MonoBehaviour:
   raisedSortingOrder: 19
   targetType: 2
   ownerType: 0
+--- !u!114 &114319748296076402
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1766083365129074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d066ca2a1cb79fa47a48a879fad85e03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114534109381037346
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114069096656189562}
   - component: {fileID: 114073585307614120}
   - component: {fileID: 61576138871918602}
+  - component: {fileID: 114630316340516258}
   m_Layer: 0
   m_Name: Card_Attack
   m_TagString: Untagged
@@ -55,6 +56,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4717797818530912}
   - component: {fileID: 212864790570208474}
+  - component: {fileID: 114771351506652940}
   m_Layer: 0
   m_Name: Cost
   m_TagString: Untagged
@@ -153,6 +155,29 @@ MonoBehaviour:
   raisedSortingOrder: 19
   targetType: 0
   ownerType: 0
+--- !u!114 &114630316340516258
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1169889818856574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d066ca2a1cb79fa47a48a879fad85e03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114771351506652940
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1983946903797178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 822e6657b586bea4894a590c8dc6a699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _card: {fileID: 114851478424123522}
 --- !u!114 &114851478424123522
 MonoBehaviour:
   m_ObjectHideFlags: 1
